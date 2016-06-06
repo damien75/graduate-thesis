@@ -76,8 +76,17 @@ It turns out that the space of linear models for smoothly varying frame fields i
     \label{fig:c123}
 \end{figure}
 
- Fig. 2: Connection forms measure the local rotations of the frame axes f1, f2, f3. Here we focus on the contraction of the 1-form c12 on the frame axes f3 and compare its values in a short axis slice of a pig heart with an infarct (middle) with those in a short axis slice from a healthy pig heart (right). See text for a discussion.
-Cartan frame field analysis applies to smoothly rotating frame fields. In the presence of infarcts fiber orientation coherence is lost. The connections then fail to explain the orientation of fibers in a local neighborhood and fitting errors using this method go up (Fig. 1 middle left). This association of frame field fitting error with fiber incoherence is the key insight behind the developments in this paper.
-Cartan Frame Analysis of Hearts with Infarcts 5
-2.2 Cartan Frame Fitting and Error Analysis
-As explained earlier, at each voxel we use an estimate of the fiber orientation given by the orientation of the first principal eigen vector of a diffusion tensor reconstruction for f1. We then estimate the heart wall normal as the gradient of the distance function to the boundary of the myocardium and take the com- ponent of the normal that is orthogonal to f1 to be f3. f2 is then taken to be their cross product. Our numerical implementation of frame field fitting relies on finding the best estimates of the 9 connections at each voxel in the sense of explaining the orientations in its neighborhood. Specifically, using Nelder-Mead optimization, we minimize an energy given by the angle between the measured orientation at each neighbor and that given by rotating the frame field by a par- ticular set of connections. Once this method converges the error of fit at a voxel is taken to be the average angular error between fiber orientations in a neighbor- hood and those given by rotating the frame at that voxel using its connection parameters.
+ Connection forms measure the local rotations of the frame axes $\mathbf{f}_1, \mathbf{f}_2, \mathbf{f}_3$. Here we focus on the contraction of the 1-form $c_{1,2}$ on the frame axes $\mathbf{f}_3$ and compare its values in a short axis slice of a pig heart with an infarct \ref{fig:c123infarct} with those in a short axis slice from a healthy pig heart \ref{fig:c123healthy}. \\
+ 
+ \begin{figure}
+     \centering
+     \includegraphics[width=\textwidth]{figures/pig4_error_of_fit_slice_19}
+     \caption{Error of fit}
+     \label{fig:error_of_fit}
+ \end{figure}
+ 
+Cartan frame field analysis applies to smoothly rotating frame fields. In the presence of infarcts fiber orientation coherence is lost. The connections then fail to explain the orientation of fibers in a local neighborhood and fitting errors using this method go up \ref{fig:error_of_fit}. This association of frame field fitting error with fiber incoherence is the key insight behind the developments in this paper.
+
+\section{Cartan Frame Fitting and Error Analysis}
+
+As explained earlier, at each voxel we use an estimate of the fiber orientation given by the orientation of the first principal eigen vector of a diffusion tensor reconstruction for $\mathbf{f}_1$. We then estimate the heart wall normal as the gradient of the distance function to the boundary of the myocardium and take the component of the normal that is orthogonal to $\mathbf{f}_1$ to be $\mathbf{f}_3$. $\mathbf{f}_2$ is then taken to be their cross product. Our numerical implementation of frame field fitting relies on finding the best estimates of the 9 connections at each voxel in the sense of explaining the orientations in its neighborhood. Specifically, using Nelder-Mead optimization, we minimize an energy given by the angle between the measured orientation at each neighbor and that given by rotating the frame field by a particular set of connections. Once this method converges the error of fit at a voxel is taken to be the average angular error between fiber orientations in a neighborhood and those given by rotating the frame at that voxel using its connection parameters.

@@ -1,5 +1,24 @@
 \chapter{Literature Review}
 
+\section{Cardiac Diffusion MRI}
+
+Magnetic Resonance Imaging (MRI) is the imaging method that was used to acquire the data on which are results are based. It is non-invasive and especially adapted to soft-tissues. We will explain briefly how it works and what information it gives us.
+
+\subsection{Physics of MRI}
+
+Magnetic Resonance acquisitions rely on the physical properties of the body, and more specifically the most abundant nucleus which is hydrogen (H). Indeed water molecules represent more than 70\% of the entire body composition. This hydrogen nucleus consists of 1 proton and 1 electron of opposite electrical charge. The relative position of the electron in respect to the proton leads to different electron spin that is a property of this atom and makes it behave like a magnetic dipole. Applying an external magnetic field $\mathbf{B_0}$ leads to a precession around the direction of $\mathbf{B_0}$ of the nuclear magnetic moment of the nucleus. Its magnetic moment will have a characteristic frequency $\omega_0$. All the magnetic moments of the nuclei in a specific region will average out to a net magnetization vector $\mathbf{M_0}$ aligned with $\mathbf{B_0}$.\\
+Then the idea is to apply a secondary and much less intense magnetic field $\mathbf{B_1}$, with $||\mathbf{B_1}|| \simeq 10^{-6}||\mathbf{B_0}||$ in a direction in the plane orthogonal to the direction of $\mathbf{B_0}$, rotating around the direction of $\mathbf{B_0}$ with the Larmor frequency $\omega_0$ to bring the nuclei out of their equilibrium and into an excited state. This can be achieved by transmitting radio frequency (RF) pulses.\\
+
+\subsection{At the service of Imaging}
+
+Once the nuclei are in its excited state, its relaxation and the outcome magnetization vector in the $(x, y)$ plane $\mathbf{M_{x, y}}$ induces a current recorded by a RF receiving coil. This is the signal that is measured in a MR experiment and that will be used to acquire the data.\\
+For acquisitions in 2D or 3D there are gradient applied to the RF pulse depending on the location, so that the receiving coil can differentiate more easily depending on this modulation. Typically in 2D for a slice they use frequency and phase encoding for the 2 degrees of freedom. In 3D slice selection is accomplished via a linear magnetic gradient, so that the main exterior magnetic field $\mathbf{B_0}(z)$ is different for each slice and leads to different Larmor values for each value of $z$.\\
+In our case all MRI are acquired ex-vivo, which means that the acquisition process is more simple as the subject is perfectly still and several acquisitions can be performed without having to worry about the subject's motion. More advanced techniques are invoked such as FLASH imaging to solve these extra requirements.
+
+\section{Diffusion Tensor Imaging}
+
+Magnetic resonance diffusion tensor imaging (DTI) is a method based on MRI and the diffusion mechanism of water molecules to assess the direction of fibers from the anisotropic property of the diffusion of these molecules in a structure that presents several boundaries.
+
 \section{Zurich + Oxford confidential proposal}
 
 \subsection{Definition}

@@ -2,7 +2,7 @@
 
 \section{Cardiac Diffusion MRI}
 
-Magnetic Resonance Imaging (MRI) is the imaging method that was used to acquire the data on which are results are based. It is non-invasive and especially adapted to soft-tissues. We will explain briefly how it works and what information it gives us.
+Magnetic Resonance Imaging (MRI) is the imaging method that was used to acquire the data on which are results are based. It is non-invasive and especially adapted to soft-tissues. \cite{bakermans2008} We will explain briefly how it works and what information it gives us.
 
 \subsection{Physics of MRI}
 
@@ -17,7 +17,38 @@ In our case all MRI are acquired ex-vivo, which means that the acquisition proce
 
 \section{Diffusion Tensor Imaging}
 
-Magnetic resonance diffusion tensor imaging (DTI) is a method based on MRI and the diffusion mechanism of water molecules to assess the direction of fibers from the anisotropic property of the diffusion of these molecules in a structure that presents several boundaries.
+Magnetic resonance diffusion tensor imaging (DTI) is a method based on MRI and the diffusion mechanism of water molecules to assess the direction of fibers from the anisotropic property of the diffusion of these molecules in a structure that contains boundaries.\\
+
+\subsection{Physical diffusion property of molecules}
+
+In general the DTI signal is based on the proton of the hydrogen nucleus present in water molecules.\\
+In a non-restrictive volume, the motion of molecules also called Brownian motion has a Gaussian distribution at equilibrium that is linked to the temperature of the environment and other properties of this environment. This Gaussian distribution will be deviated in the presence of physical barriers that will decrease the diffusivity. Indeed molecules' motion will be hindered in the direction perpendicular to the obstacles. When barriers are present the diffusion will change from isotropic to anisotropic. If we look at a free water molecule, its diffusion would be in the shape of a sphere whereas with boundaries the diffusion of the same water molecule would be more of an ellipsoid with principal direction orthogonal to the boundary.
+
+\subsection{Applied to diffusion weighted imaging}
+
+Two short and intense successive pulsed field gradients (PFGs) are applied to the region of interest. The first makes protons have a precession phase proportional to their position along the direction of the gradient. Then a second one is applied with the exact opposite direction so that molecules that didn't move will have a precession phase null whereas those that moved will have a precession phase proportional to their motion in the direction of the PFG. Here we talk about single water molecules but in reality we are considering distribution of water molecules, and for unbounded water molecules the distribution will be centered around a null motion whereas bounded ones will have a motion distribution centered around the direction orthogonal to the main boundary.
+
+\subsection{To get a diffusion tensor matrix $\mathbb{D}$}
+
+Diffusion anisotropy can be described mathematically by a 3x3 diffusion tensor:
+\begin{equation}
+    \mathbb{D} = \begin{pmatrix}
+    D_{xx} & D_{xy} & D_{xz} \\
+    D_{yx} & D_{yy} & D_{yz} \\
+    D_{zx} & D_{zy} & D_{zz}
+    \end{pmatrix}
+\end{equation}
+
+with $D_{ij}$ the apparent diffusion coefficient (ADC) in direction $(i, j)$. $\mathbb{D}$ is symmetric, which means that $D_{ij} = D_{ji}$.\\
+In conclusion we need at least 6 independent gradient directions to determine all 6 degrees of freedom in this matrix. In practice 7 directions are used to get more accurate results, along with a non-weighted measurement.\\
+The values that we analyze most frequently are ADC and fracional anisotropy (FA):
+\begin{equation}
+    ADC = \frac{tr{\mathbb{D}}}{3} = \frac{\lambda_1 + \lambda_2 + \lambda_3}{3}
+\end{equation}
+\begin{equation}
+    FA = \sqrt{\frac{(\lambda_1 - \lambda_2)^2 + (\lambda_2 - \lambda_3)^2 + (\lambda_3 - \lambda_1)^2}{\lambda_1^2 + \lambda_2^2 + \lambda_3^2}}
+\end{equation}
+
 
 \section{Zurich + Oxford confidential proposal}
 

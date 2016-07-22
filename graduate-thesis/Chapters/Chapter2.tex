@@ -28,7 +28,7 @@ In a non-restrictive volume, the motion of molecules also called Brownian motion
 
 Two short and intense successive pulsed field gradients (PFGs) are applied to the region of interest. The first makes protons have a precession phase proportional to their position along the direction of the gradient. Then a second one is applied with the exact opposite direction so that molecules that didn't move will have a precession phase null whereas those that moved will have a precession phase proportional to their motion in the direction of the PFG. Here we talk about single water molecules but in reality we are considering distribution of water molecules, and for unbounded water molecules the distribution will be centered around a null motion whereas bounded ones will have a motion distribution centered around the direction orthogonal to the main boundary.
 
-\subsection{To get a diffusion tensor matrix $\mathbb{D}$}
+\subsection{To get a diffusion tensor matrix}
 
 Diffusion anisotropy can be described mathematically by a 3x3 diffusion tensor:
 \begin{equation}
@@ -49,99 +49,80 @@ The values that we analyze most frequently are ADC and fracional anisotropy (FA)
     FA = \sqrt{\frac{(\lambda_1 - \lambda_2)^2 + (\lambda_2 - \lambda_3)^2 + (\lambda_3 - \lambda_1)^2}{\lambda_1^2 + \lambda_2^2 + \lambda_3^2}}
 \end{equation}
 
+\section{Fiber modeling}
 
-\section{Zurich + Oxford confidential proposal}
+We are using Maurer-Cartan description of fibers geometry in our study of heart fibers. \cite{pami2015, savadjiev2012heart, piuzephd, levy1935methode} Indeed the heart fiber structure is a dense and continuous set that we want to model in the best way possible. The Maurer-Cartan method provides good descriptors of smooth manifolds in $\mathbb{R}^3$, using a moving frame. This method of moving frame combined with a minimal surface model and the Generalized Helicoidal model (GHM) can efficiently characterize heart fiber geometry.
 
-\subsection{Definition}
+\subsection{Theory of moving frames}
 
-DTI definitions:
-• ADC (apparent diffusion coefficient), measured in $mm^2/s$: it is a measure of how quickly the water molecules spread out
-due to diffusion, defined as the mean of the diagonal of the diffusion tensor. Consider the drawing A, where the red line shows the typical diffusion of a water molecule, randomly moving around – the black ball shows this molecules diffusion speed and direction. In constricted regions (e.g. inside cells) water is constrained, and the mean diffusion (apparent diffusion coefficient, or ADC) is low, while in regions where the motion of the water molecules is unconstrained, ADC is high . For example, in the drawing below (adapted from http://www.cabiatl.com/CABI/resources/dti-analysis/), water is diffusing faster in A than B.
-• FA (fractional anisotropy), unitless: it is a measure of how much the diffusion is restricted in different directions; an FA of 0 means that diffusion is wholly isotropic (equal in all directions), while an FA of 1 means that diffusion is solely along one direction. This is defined as the standard deviation of the eigenvalues of the diffusion tensors divided by the root mean square of the eigenvalues. For example, in drawing C the water is moving isotropically, while
-in D the water is moving anisotropically.
-• HA (helix angle), measured in degrees: it shows the direction along which water molecules preferentially diffuse, This has been shown by histology to agree with the orientation of the myofibres. It is defined as the angle the principal eigenvector of the diffusion tensor makes with the vector pointing circumferentially around the short axis of the myocardium.
+We utilize the framework described in \cite{de1990ventricular} to describe the geometry of fiber orientation in the heart wall via rotations of a frame field that is fit to the diffusion MRI data. \\
+Let a point $\mathbf{x} = \sum_i{x_i\mathbf{e_i}} \in \mathbb{R}^3$ be expressed in terms of $(\mathbf{e_1}, \mathbf{e_2}, \mathbf{e_3})$, the natural basis for $\mathbb{R}^3$. \\
+We define a right-handed orthonormal frame field $\mathbf{f_1},\mathbf{f_2},\mathbf{f_3} : \mathbb{R}^3 \to \mathbb{R}^3$. \\ 
+Each frame axis can be expressed by the rigid rotation $f_i = \sum_i{a_{i,j}\mathbf{e_j}}$, where $\mathbf{A} = {a_{i,j}} \in \mathbb{R}^{3 \times 3}$ is a differentiable attitude matrix such that $\mathbf{A}^{-1} = \mathbf{A}^T$. \\
+Treating $\mathbf{f_i}$ and $\mathbf{e_j}$ as symbols, we can write:
+\begin{equation}
+\begin{bmatrix}
+    \mathbf{f_1} \\
+    \mathbf{f_2} \\
+    \mathbf{f_3}
+\end{bmatrix} = \mathbf{A} \times \begin{bmatrix}
+    \mathbf{e_1} \\
+    \mathbf{e_2} \\
+    \mathbf{e_3}
+\end{bmatrix}
+\end{equation}
 
+Since each $\mathbf{e_i}$ is constant, the differential geometry of the frame field is completely characterized by $\mathbf{A}$. Taking the exterior derivative on both sides, we have:
+\begin{equation} \label{eq:1}
+\begin{split}
+    \partial \begin{bmatrix}
+                \mathbf{f_1} \\
+                \mathbf{f_2} \\
+                \mathbf{f_3}
+            \end{bmatrix} &= (\partial \mathbf{A})\mathbf{A}^{-1}  \begin{bmatrix}
+                \mathbf{f_1} \\
+                \mathbf{f_2} \\
+                \mathbf{f_3}
+            \end{bmatrix} \\
+            &= \mathbf{C}
+            \begin{bmatrix}
+                \mathbf{f_1} \\
+                \mathbf{f_2} \\
+                \mathbf{f_3}
+            \end{bmatrix}
+\end{split}
+\end{equation}
+where $\partial$ denotes the exterior derivative, and $\mathbf{C} = (\partial \mathbf{A}) \mathbf{A}^{-1} = (c_{i,j}) \in \mathbb{R}^{3 \times 3}$ is the Maurer-Cartan matrix of connection forms $(c_{i,j})$. \\
+Writing $\mathbf{f}_i$ as symbols, \ref{eq:1} is to be understood as $\partial \mathbf{f}_i = \sum_j{c_{i,j}\mathbf{f}_j}$. \\
+The Maurer-Cartan matrix is skew symmetric with zeros as diagonal entries so there are at most 3 independent, non-zero 1-forms: $c_{1,2}$, $c_{1,3}$, and $c_{2,3}$. \\
+1-forms operate on tangent vectors through contraction, written as $\partial \omega \langle \boldsymbol{\upsilon} \rangle \in \mathbb{R}$ for a general 1-form $\partial \omega = \sum_i{\omega_i \mathbf{e_i}}$ and tangent vector $\boldsymbol{\upsilon} \in \mathbb{R}^3$, which yields:
+\begin{equation}
+\begin{split}
+    \partial \omega \langle \boldsymbol{\upsilon} \rangle &= \sum_i{\omega_i \partial \mathbf{e_i}} \big{\langle} \sum_j{\upsilon_j \mathbf{e_j}} \big{\rangle} \\
+    &= \sum_i{\omega_i \upsilon_i}
+\end{split}
+\end{equation} since $\partial \mathbf{e_i} \langle \mathbf{e_j} \rangle = \delta_{i,j}$, where $\delta_{i,j}$ is the Kronecker delta. \\
+It turns out that the space of linear models for smoothly varying frame fields is parametrized by the 1-forms $c_{i,j}$. Since only 3 unique non-zero combinations of $c_{i,j}$ are possible, there are in total 9 connections $c_{i,j,k}$. These coefficients express the rate of turn of the frame vector $\mathbf{f}_i$ towards $\mathbf{f}_j$ when $\mathbf{x}$ moves in the direction $\mathbf{f}_k$. 
 
-\subsection{Article}
+\subsection{Application to heart fiber geometry}
 
-The paper aims at establishing cardiovascular magnetic resonance (CMR) imaging techniques to efficiently evaluate myocardial irreversible injury, especially for patients presenting acute myocardial infection (MI).
-Specifically, the goal is to assess the lack of integrity and the subsequent rearrangement of the myocardial bundles, to be able to use these to predict arrhythmias and establish new predictors of LV remodeling (?).\\
-The group has shown that L2W and LGE CMR are not suitable methods for assessment of irreversible injury acutely. Instead, they plan on using, based on DTI, apparent diffusion coefficient (ADC) and fractional anisotropy (FA) and by their quantification of myocardial fiber integrity imaging have a tool to assess irreversibility of myocardial injury.\\
+With $\mathbf{f}_1$ taken as the local orientation of a fiber and $\mathbf{f}_3$ taken to be the component of the heart wall normal orthogonal to $\mathbf{f}_1$, \ref{fig:c123theory} illustrates the connection $c_{1,2,3}$, which measures the rotation of fibers for a trans-mural penetration of the wall.\\
 
-A recently ￼developed time-resolved CMR 4D flow imaging technique for quantification of blood flow in the whole heart throughout the cardiac
-cycle enables assessment of the kinetic energy (KE) changes of the individual LV flow components.
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[t]{.48\textwidth}
+        \includegraphics[width=\textwidth]{figures/c123}
+        \caption[b]{Geometry evolving as we move in the direction of $\mathbf{F_3}$, with the color getting more intense as we move out of plane}
+        \label{fig:c123}
+    \end{subfigure}
+    \begin{subfigure}[t]{.48\textwidth}
+        \includegraphics[width=\textwidth]{figures/helix_angle}
+        \caption{Most significant rotation the heart we will focus on}
+        \label{fig:helix_angle}
+    \end{subfigure}
+    \caption{Signification of Maurer-Cartan forms, and more specifically $c_{1,2,3}$ in the chosen configuration on heart data}
+\end{figure}
 
-￼Quantifying the degree of KE loss of the flow over time and relating this to the underlying myocardial fiber arrangement would allow us to establish a novel potential predictor of LV dilation and heart failure, beyond
-￼￼￼the conventional EF-based clinical stratification currently used.\\
+\section{Infarcts and their impact on heart fiber geometry}
 
-The primary endpoints and readouts of this proposal are: (1) the degree of disruption and re-￼arrangement of myocardial fibre bundles (characterized by ADC/FA maps and HA distribution) as predictors of irreversible injury, defined by LGE scarred myocardium and lack of functional recovery at 6 months; (2) the degree of acute myocardial bundle re-arrangement (defined as HA distribution) in the peri-infarct zone (defined on 6 months LGE) as a predictor of ventricular arrhythmias assessed acutely, 4 weeks and 6 months on a 24h Holter monitoring system, respectively; (3) The KE loss of intraventricular blood flow (assessed by 4D flow) in the early phases post MI as predictor of adverse LV remodeling at 18 months (assessed by increase in end-systolic volume and decrease in EF between day 1 and 18 months). Dedicated post-processing tools will be developed by the post-doctoral research scientist, who will also
-support the data analysis.
-
-\section{PNAS-2012-Savadjiev-9248-53}
-
-This article aims at explaining how myofibers are bundled in the heart wall while economizing fiber length and optimizing ventricular ejection volume as they contract. This arrangement is of a minimal surface, the generalized helicoid.\\
-They use mathematical models involving the angular change in the appropriate local coordinate frame. Their model is based on the Maurer Cartan's moving frame construction, where the local coordinate frame is more meaningful in a small than in a too large frame where the tangent plane approximation becomes less accurate.\\
-They show that fibers are packed together to achieve the helicoidal organization, and that this minimal surface structure can be maintained during the beat cycle. The improvement since previous research is to describe volumetric bundles of fibers instead of solely an individual description of them, and the analysis of the fiber orientation in 3D. They also consider the apex in their study, which was so far excluded from former analysis.\\
-The helicoid is obtained if you go through the heart wall, in any direction from the epicardium to the endocardium. The histograms indeed show a homogeneous value for $K_B$, and different $\neq 0$ ($2.63° \leq \mu \geq 7.63°$), whereas values for $K_T$ and $K_N$ are centered around 0. $K_B$ has the effect of creating rotated copies of the same fibers in the z direction, therefore in planes parallel to the x-y plane.
-
-\section{Strijkers et al-2009-NMR in Biomedicine}
-
-\subsection{Definitions}
-
-remodeling: change in size, shape and function of the heart
-
-\subsection{Article}
-
-They use in this study left ventricular remodeling in a mouse using DTI. They induce a myocardial infarction by permanent ligation of the left anterior descending coronary artery. Then they perform ex-vivo DTI measurements 7,14,28 and 60 days after ligation.\\
-After myocardial infarction, the mouse hearts show an important wall thinning in the infarcted area, a heart mass increase of up to 70\%.
-The infarct at 7 days consisted of unstructured tissue with residual necrosis and infiltration of macrophages and myofibroblasts. At 14 days after infarction, the necrotic tissue had disappeared and collagen fibers were starting to appear. From 28 to 60 days, the infarct had fully developed into a mature scar.\\
-The infarcted heart wall was too thin to have relevant data of the change in helix angles, but the ADC increased with infarction, as well as the FA that was maximal at 28 days. The DA is significantly greater in the infarcted areas as well.\\
-After myocardial infarction, cardiomyocytes are replaced by scar tissue, which lacks contractile properties. This tissue expands and becomes thinner.
-
-\section{Brain choline concentration \~{}}
-
-They found that choline concentration measured by 1H MRS in DTI normal-appearing tissue located around the ischemic lesion within the first 26 hours from stroke onset was elevated in those voxels that became infarcted on DTI within the next few days. Moreover, the degree of ischemic expansion was associated with the degree of elevation of choline concentration. Further studies are required to determine whether choline concentration is a reliable, sensitive, or specific measure for predicting infarct growth, including identification of the potential threshold values, and therefore could be used to support treatment decisions in routine practice.
-
-\section{Diffusion tensor magnetic resonance imaging}
-
-\subsection{Definitions}
-
-LHF and RHF: left and right-handed helical fiber
-
-\subsection{Article}
-
-This paper focuses on the use of DT-MRI to show how they can help as indicators of fiber architecture remodeling after an infarct on human data.\\
-They show that trace ADC is significantly increased in the infarct zone, which is consistent with the findings on rat heart data. This increase is caused by the presence of scar tissue and therefore increase in the extracellular space, thus less restriction for diffusion.
-FA in the infarct zone significantly decreases in the infarct zone, once again in line with the results obtained from rat data. They also find that 26 days after acute MI, trace ADC and FA in each viability zone showed significant inverse correlation.\\
-The helix angle distribution of the myocardial fibers was significantly altered across the 3 zones.\\
-RHF\% decreased and LHF\% increased in the infarct zone, and the opposite occured in the remote zone.\\
-Hypothesis brought by this paper: area most susceptible to ischemia is the subendocardial area. Therefore, RHF had the most severe loss in the infarct zone. Second, an increase in LHF\% in the infarct zone may represent a remodeling process triggered to compensate for the loss of RHF in the infarct zone and to keep the balanced ratio of $\frac{\text{LHF\%} \times \text{RHF\%}}{\text{CF\%}}$. Third, the RHF\% increase in remote compensatory hypertrophy may be an adaptive remodeling response to the increase in wall stress.
-
-\section{Serial diffusion tensor mri and tractography of the mouse heart in-vivo \~{}}
-
-Measurements of RV long axis displacement by CMR tagging showed more significant differences between the groups studied than did RV-EF. It was reproducible, quick and easy to apply and analyse. They insist on the insensitivity of the RV-EF as a marker of change in the RV myocardial contractile function.
-
-\section{Myocardial diffusion tensor imaging using diffusion-prepared ssfp \~{} Treatment?}
-
-In TM patients prospectively observed for 18 months, at the dosages used in the real world, combined DFP+DFO regimen and DFP in monotherapy were not significantly different in removing myocardial iron and improving heart function, while combined DFP+DFO therapy was more effective in the hepatic iron clearance. Combined DFP+DFO regimen confirmed its higher efficacy versus subcutaneous DFO in removing heart and liver iron, without an additional effect on the heart function. Further randomized controlled trials at fixed therapeutic schedules should be designed to verify these findings.
-
-\section{Cardiovascular magnetic resonance characterization of peri-infarct zone remodeling following myocardial infarction}
-
-The risk of sudden death is the highest in the 30 days following an MI. Islands of viable myocardium, surrounded by regions of myocardial scar, can produce the substrate for monomorphic ventricular tachycardia (VT), which is a significan risk factor for sudden cardiac death.
-The 2 major findings of this study are: a temporal change in peri infarct zone (PIZ) size detected with LGE-CMR, and myocardial strain patterns change during the post-MI remodeling process.
-Cardiac wound repair, after MI, involves temporarily overlapping phases which include an inflammatory phase and tissue remodeling phase.
-Even with unperfectly reliable evaluation of the PIZ, the size and mass of it decreases after MI, before it stabilizes.
-
-\section{Reese et al-1995-Magnetic Resonance in Medicine}
-
-\section{Maurer-Cartan Forms for Fields on Surfaces: Application to Heart Fiber Geometry}
-
-Based on Maurer-Cartan form and methods applied from this basis, the goal of the paper is to apply it to moving frames in a rigorous way, the generation of various geometrical embeddings - the heart in particular. The Maurer-Cartan form is an operator that measures the differential structure of a manifold, and it is applied to study the geometrical characteristics  of the manifold under consideration. In this article they apply the theory of moving frames in the reverse direction so that the Maurer-Cartan forms are used to generate manifolds or embeddings based on assumptions of their differential structure --> this is what we will use in our research.\\
-This idea can be used to characterize a smooth frame field in the three dimensions as a parametrization on the space of the Maurer-Cartan connection forms.\\
-They also develop and compare a number of fitting method that will be very helpful in fitting our data.\\
-Let's define the local frame field $\mathbf{F = [f_1 , f_2 , f_2]^T} : \mathbb{R}^3 \to \mathbb{R}^3$.\\
-We have by construction: $\mathbf{F = A[e_1 , e_2 , e_3]^T = AE}$.\\
-Therefore we get: $d \mathbf{f_i} = \sum_j c_{i,j}\mathbf{f_j}$.\\
-The Maurer-Cartan matrix is skew symmetric: $\mathbf{C} = \begin{bmatrix}0 & c_{1,2} & c_{1,3} \\ -c_{1,2} & 0 & c_{2,3} \\ -c_{1,3} & -c_{2,3} & 0
-\end{bmatrix}$.\\
-Using these notations we can define $c_{i,j,k}$ to be the coefficient of the turning of $\mathbf{f_i}$ towards $\mathbf{f_j}$ when we move (our position) towards $\mathbf{f_k}$.
+\cite{pmbpop2013quantification, mediamihaela}

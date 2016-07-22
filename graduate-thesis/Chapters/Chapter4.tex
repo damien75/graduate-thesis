@@ -2,54 +2,7 @@
 
 \section{Modeling fiber geometry using connection forms}
 
-We utilize the framework described in \cite{de1990ventricular} to describe the geometry of fiber orientation in the heart wall via rotations of a frame field that is fit to the diffusion MRI data. \\
-Let a point $\mathbf{x} = \sum_i{x_i\mathbf{e_i}} \in \mathbb{R}^3$ be expressed in terms of $(\mathbf{e_1}, \mathbf{e_2}, \mathbf{e_3})$, the natural basis for $\mathbb{R}^3$. \\
-We define a right-handed orthonormal frame field $\mathbf{f_1},\mathbf{f_2},\mathbf{f_3} : \mathbb{R}^3 \to \mathbb{R}^3$. \\ 
-Each frame axis can be expressed by the rigid rotation $f_i = \sum_i{a_{i,j}\mathbf{e_j}}$, where $\mathbf{A} = {a_{i,j}} \in \mathbb{R}^{3 \times 3}$ is a differentiable attitude matrix such that $\mathbf{A}^{-1} = \mathbf{A}^T$. \\
-Treating $\mathbf{f_i}$ and $\mathbf{e_j}$ as symbols, we can write:
-\begin{equation}
-\begin{bmatrix}
-    \mathbf{f_1} \\
-    \mathbf{f_2} \\
-    \mathbf{f_3}
-\end{bmatrix} = \mathbf{A} \times \begin{bmatrix}
-    \mathbf{e_1} \\
-    \mathbf{e_2} \\
-    \mathbf{e_3}
-\end{bmatrix}
-\end{equation}
-
-Since each $\mathbf{e_i}$ is constant, the differential geometry of the frame field is completely characterized by $\mathbf{A}$. Taking the exterior derivative on both sides, we have:
-\begin{equation} \label{eq:1}
-\begin{split}
-    \partial \begin{bmatrix}
-                \mathbf{f_1} \\
-                \mathbf{f_2} \\
-                \mathbf{f_3}
-            \end{bmatrix} &= (\partial \mathbf{A})\mathbf{A}^{-1}  \begin{bmatrix}
-                \mathbf{f_1} \\
-                \mathbf{f_2} \\
-                \mathbf{f_3}
-            \end{bmatrix} \\
-            &= \mathbf{C}
-            \begin{bmatrix}
-                \mathbf{f_1} \\
-                \mathbf{f_2} \\
-                \mathbf{f_3}
-            \end{bmatrix}
-\end{split}
-\end{equation}
-where $\partial$ denotes the exterior derivative, and $\mathbf{C} = (\partial \mathbf{A}) \mathbf{A}^{-1} = (c_{i,j}) \in \mathbb{R}^{3 \times 3}$ is the Maurer-Cartan matrix of connection forms $(c_{i,j})$. \\
-Writing $\mathbf{f}_i$ as symbols, \ref{eq:1} is to be understood as $\partial \mathbf{f}_i = \sum_j{c_{i,j}\mathbf{f}_j}$. \\
-The Maurer-Cartan matrix is skew symmetric with zeros as diagonal entries so there are at most 3 independent, non-zero 1-forms: $c_{1,2}$, $c_{1,3}$, and $c_{2,3}$. \\
-1-forms operate on tangent vectors through contraction, written as $\partial \omega \langle \boldsymbol{\upsilon} \rangle \in \mathbb{R}$ for a general 1-form $\partial \omega = \sum_i{\omega_i \mathbf{e_i}}$ and tangent vector $\boldsymbol{\upsilon} \in \mathbb{R}^3$, which yields:
-\begin{equation}
-\begin{split}
-    \partial \omega \langle \boldsymbol{\upsilon} \rangle &= \sum_i{\omega_i \partial \mathbf{e_i}} \big{\langle} \sum_j{\upsilon_j \mathbf{e_j}} \big{\rangle} \\
-    &= \sum_i{\omega_i \upsilon_i}
-\end{split}
-\end{equation} since $\partial \mathbf{e_i} \langle \mathbf{e_j} \rangle = \delta_{i,j}$, where $\delta_{i,j}$ is the Kronecker delta. \\
-It turns out that the space of linear models for smoothly varying frame fields is parametrized by the 1-forms $c_{i,j}$. Since only 3 unique non-zero combinations of $c_{i,j}$ are possible, there are in total 9 connections $c_{i,j,k}$. These coefficients express the rate of turn of the frame vector $\mathbf{f}_i$ towards $\mathbf{f}_j$ when $\mathbf{x}$ moves in the direction $\mathbf{f}_k$. With $\mathbf{f}_1$ taken as the local orientation of a fiber and $\mathbf{f}_3$ taken to be the component of the heart wall normal orthogonal to $\mathbf{f}_1$, \ref{fig:c123theory} illustrates the connection $c_{1,2,3}$, which measures the rotation of fibers for a transmural penetration of the wall. The histograms of $c_{1,2,3}$ for these cases are discussed in Section ???. \\
+ The histograms of $c_{1,2,3}$ for these cases are discussed in Section ???. \\
 \begin{figure}[h!]
     \centering
     \begin{subfigure}[h!]{0.3\textwidth}
@@ -73,7 +26,7 @@ It turns out that the space of linear models for smoothly varying frame fields i
         \label{fig:c123healthy}
     \end{subfigure}
     \caption{$c_{1,2,3}$ with range of values in porcine hearts}
-    \label{fig:c123}
+    \label{fig:c123all}
 \end{figure}
 
  Connection forms measure the local rotations of the frame axes $\mathbf{f}_1, \mathbf{f}_2, \mathbf{f}_3$. Here we focus on the contraction of the 1-form $c_{1,2}$ on the frame axes $\mathbf{f}_3$ and compare its values in a short axis slice of a pig heart with an infarct \ref{fig:c123infarct} with those in a short axis slice from a healthy pig heart \ref{fig:c123healthy}. \\

@@ -2,16 +2,50 @@
 
 \section{Cardiac Diffusion MRI}
 
-Magnetic Resonance Imaging (MRI) is the imaging method that was used to acquire the data on which are results are based. It is non-invasive and especially adapted to soft-tissues. \cite{bakermans2008} We will explain briefly how it works and what information it gives us.
+Magnetic Resonance Imaging (MRI) is the imaging method that was used to acquire the data on which our results are based. It is non-invasive and especially adapted to soft-tissues. \cite{bakermans2008} We will explain briefly how it works and what information it gives us.
 
 \subsection{Physics of MRI}
 
-Magnetic Resonance acquisitions rely on the physical properties of the body, and more specifically the most abundant nucleus which is hydrogen (H). Indeed water molecules represent more than 70\% of the entire body composition. This hydrogen nucleus consists of 1 proton and 1 electron of opposite electrical charge. The relative position of the electron in respect to the proton leads to different electron spin that is a property of this atom and makes it behave like a magnetic dipole. Applying an external magnetic field $\mathbf{B_0}$ leads to a precession around the direction of $\mathbf{B_0}$ of the nuclear magnetic moment of the nucleus. Its magnetic moment will have a characteristic frequency $\omega_0$. All the magnetic moments of the nuclei in a specific region will average out to a net magnetization vector $\mathbf{M_0}$ aligned with $\mathbf{B_0}$.\\
-Then the idea is to apply a secondary and much less intense magnetic field $\mathbf{B_1}$, with $||\mathbf{B_1}|| \simeq 10^{-6}||\mathbf{B_0}||$ in a direction in the plane orthogonal to the direction of $\mathbf{B_0}$, rotating around the direction of $\mathbf{B_0}$ with the Larmor frequency $\omega_0$ to bring the nuclei out of their equilibrium and into an excited state. This can be achieved by transmitting radio frequency (RF) pulses.\\
+Magnetic Resonance acquisitions rely on the physical properties of the body, and more specifically the most abundant nucleus which is hydrogen (H). Indeed water molecules ($H_2O$, therefore 2 nucleus of hydrogen in each molecule) represent more than 60\% of the entire body composition. This hydrogen nucleus H consists of 1 proton and 1 electron (which is not important in this case) of opposite electrical charge. The proton spins around itself and therefore creates a magnetic moment which makes the nucleus behave like a magnet from the outside world.
+\begin{figure}
+    \centering
+    \begin{subfigure}[t]{.30\textwidth}
+        \includegraphics[width=\textwidth]{figures/hydrogen_magnet}
+        \caption{The hydrogen proton behaves like a magnetic dipole}
+        \label{fig:hydrogen_magnet}
+    \end{subfigure}
+    \begin{subfigure}[t]{.68\textwidth}
+        \includegraphics[width=\textwidth]{figures/Precession_Larmor_2}
+        \caption{The Larmor precession when an exterior magnetic field is present - \cite{hydrogen}}
+        \label{fig:larmor_precession}
+    \end{subfigure}
+    \caption{Magnetic behavior of the hydrogen nucleus}
+    \label{fig:hydrogen}
+\end{figure}
+
+Applying an external magnetic field $\mathbf{B_0}$ leads to a precession around the direction of $\mathbf{B_0}$ of the nuclear magnetic moment of the nucleus. Its magnetic moment will have a characteristic Larmor frequency $\omega_0$. All the magnetic moments of the nuclei in a specific region will average out to a net magnetization vector $\mathbf{M_0}$ aligned with $\mathbf{B_0}$. Though it is important to note that all protons will have a different phase and that the precession is asynchronous between all protons, as shown in \ref{fig:larmor_precession}.\\
+Then the idea is to apply a secondary and much less intense magnetic field $\mathbf{B_1}$, with $||\mathbf{B_1}|| \simeq 10^{-6}||\mathbf{B_0}||$ in a direction in the plane orthogonal to the direction of $\mathbf{B_0}$, rotating around the direction of $\mathbf{B_0}$ with the Larmor frequency $\omega_0$ to bring the nuclei to resonance and out of their equilibrium, ie into an excited state \ref{fig:spin_excitation}. A torque will indeed be applied to the magnetic moment of the nucleus, coming from the Lorentz force: $\tau = \mathbf{M} \times \mathbf{B_1}$ where $\mathbf{M}$ is the magnetic moment of the nucleus. This can be achieved by transmitting radio frequency (RF) pulses. Then all nucleus motion will be synchrone and in phase.\\
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=.5\textwidth]{figures/spin_excitation}
+    \caption{Torque effect on the magnetic moment of the proton $\mathbf{M}$ when applying an extra magnetic field $\mathbf{B_1}$}
+    \label{fig:spin_excitation}
+\end{figure}
+\\
+Once the impulse stops, the protons will go back to non-coordinated state by leaving their excited state and in that process emitting another magnetic signal (weak compared to $\mathbf{B_0}$) that will be analyzed and specific to each proton. This information will be used to understand the distribution of the orientation of the magnetic moments in the environment.\\
+Indeed, the motion of water molecule is constrained by its environment (tissue, nerves...), which is why the measurement of this anisotropic diffusion reveals structural properties of the tissue we are interested in.
 
 \subsection{At the service of Imaging}
 
-Once the nuclei are in its excited state, its relaxation and the outcome magnetization vector in the $(x, y)$ plane $\mathbf{M_{x, y}}$ induces a current recorded by a RF receiving coil. This is the signal that is measured in a MR experiment and that will be used to acquire the data.\\
+Once the nuclei are in its excited state, its relaxation \ref{fig:spin_relaxation} and the outcome magnetization vector in the $(x, y)$ plane $\mathbf{M_{x, y}}$ induces a current recorded by a RF receiving coil.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=.5\textwidth]{figures/spin_relaxation}
+    \caption{Relaxation of the magnetic spin after the magnetic pulse $\mathbf{B_1}$ stops}
+    \label{fig:spin_relaxation}
+\end{figure}
+\\
+This is the signal that is measured in a MR experiment and that will be used to acquire the data.\\
 For acquisitions in 2D or 3D there are gradient applied to the RF pulse depending on the location, so that the receiving coil can differentiate more easily depending on this modulation. Typically in 2D for a slice they use frequency and phase encoding for the 2 degrees of freedom. In 3D slice selection is accomplished via a linear magnetic gradient, so that the main exterior magnetic field $\mathbf{B_0}(z)$ is different for each slice and leads to different Larmor values for each value of $z$.\\
 In our case all MRI are acquired ex-vivo, which means that the acquisition process is more simple as the subject is perfectly still and several acquisitions can be performed without having to worry about the subject's motion. More advanced techniques are invoked such as FLASH imaging to solve these extra requirements.
 
@@ -26,7 +60,41 @@ In a non-restrictive volume, the motion of molecules also called Brownian motion
 
 \subsection{Applied to diffusion weighted imaging}
 
-Two short and intense successive pulsed field gradients (PFGs) are applied to the region of interest. The first makes protons have a precession phase proportional to their position along the direction of the gradient. Then a second one is applied with the exact opposite direction so that molecules that didn't move will have a precession phase null whereas those that moved will have a precession phase proportional to their motion in the direction of the PFG. Here we talk about single water molecules but in reality we are considering distribution of water molecules, and for unbounded water molecules the distribution will be centered around a null motion whereas bounded ones will have a motion distribution centered around the direction orthogonal to the main boundary.
+Two short and intense successive pulsed field gradients (PFGs) are applied to the region of interest. The first makes protons have a precession phase proportional to their position along the direction of the gradient. Then a second one is applied with the exact opposite direction so that molecules that didn't move will have a precession phase null whereas those that moved will have a precession phase proportional to their motion in the direction of the PFG. Here we talk about single water molecules but in reality we are considering distribution of water molecules, and for unbounded water molecules the distribution will be centered around a null motion whereas bounded ones will have a motion distribution centered around the direction orthogonal to the main boundary.\\
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=.5\textwidth]{figures/pgse}
+    \caption{Pulse Gradient Spin Echo (PGSE) sequence}
+    \label{fig:pgse}
+\end{figure}
+\\
+The acquisition sequence, also called Pulse Gradient Spin Echo (PGSE) sequence, can be described as follows: \cite{assemlal2011recent}
+\begin{enumerate}
+    \item A first PFG is applied in a direction orthogonal to the main magnetic field $\mathbf{B_0}$ for $t \in [0, \delta]$.\\
+    This will have the effect to flip the nuclear spins in the direction of the impulse
+    \item Once the impulse is over, the magnetic moment of the nuclei will start dephasing as they will start rotating around the direction of $\mathbf{B_0}$, each of them with their specific frequency related to the strength of the magnetic field at their specific location
+    \item After a diffusion time $t = \Delta$, another PFG is applied and this time with a direction opposite to the first impulse for $t \in [\Delta, \Delta + \delta]$, which will refocus the spin phases
+    \item Finally at the echo time $t = TE$, the diffusion signal is received by the scanner coil with a loss proportional to the displacement of water molecule during this process. It is the information given by the displacement that will give us useful insight regarding the micro structure of the studied environment.
+\end{enumerate}
+
+The equation of Nuclear Magnetic Resonance (NMR) was given by Stejskal and Tanner in 1965: it quantifies the decrease in signal intensity and relates it with the apparent diffusion coefficient $\mathbf{D}$.\\
+Let $\mathbf{G}(t) = \Big(H\big(t - t_1\big) - H\big(t - (t_1 + \delta)\big)\Big)\mathbf{u} + \Big(H\big(t - t_2\big) - H\big(t - (t_2 + \delta)\big)\Big) \mathbf{v}$ \\
+where $\mathbf{u}, \mathbf{v}$ are unit vectors in the direction of the applied gradients, and $H(t)$ the Heaviside function at a given time $t$. Basically this function is the exact mathematical description of the PGSE sequence. Then we get the following Stejskal and Tanner equation:
+
+\begin{equation} \label{eq:tanner}
+\frac{S(TE)}{S_0} = \exp\Big({-\gamma^2G^2\delta^2(\Delta - \frac{\delta}{3})\mathbf{G}^T\mathbf{D}\mathbf{G}\Big)} = \exp (-b \times \mathbf{D})
+\end{equation}
+
+with the following:
+
+\begin{itemize}
+    \item $\gamma$: gyromagnetic ratio, constant specific to each molecule
+    \item $G$: PFG strength
+    \item $\delta$: duration of the pulse
+    \item $\Delta$: time between 2 pulses
+    \item $\mathbf{D}$: apparent diffusion coefficient
+    \item $b$ factor suggested by LeBihan: $b = \gamma^2G^2\delta^2(\Delta - \frac{\delta}{3})||\mathbf{G}||^2$
+\end{itemize}
 
 \subsection{To get a diffusion tensor matrix}
 
@@ -39,8 +107,8 @@ Diffusion anisotropy can be described mathematically by a 3x3 diffusion tensor:
     \end{pmatrix}
 \end{equation}
 
-with $D_{ij}$ the apparent diffusion coefficient (ADC) in direction $(i, j)$. $\mathbb{D}$ is symmetric, which means that $D_{ij} = D_{ji}$.\\
-In conclusion we need at least 6 independent gradient directions to determine all 6 degrees of freedom in this matrix. In practice 7 directions are used to get more accurate results, along with a non-weighted measurement.\\
+with $D_{ij}$ the apparent diffusion coefficient (ADC) in direction $(i, j)$. In an environment dominated by water molecules, principles of thermodynamics dictate that $\mathbb{D}$ is symmetric, which means that $D_{ij} = D_{ji}$.\\
+In conclusion we need at least 6 independent gradient directions to determine all 6 degrees of freedom in this matrix. In practice 7 directions are used to get more accurate results, along with a non-weighted measurement for normalization.\\
 The values that we analyze most frequently are ADC and fracional anisotropy (FA):
 \begin{equation}
     ADC = \frac{tr{\mathbb{D}}}{3} = \frac{\lambda_1 + \lambda_2 + \lambda_3}{3}

@@ -117,52 +117,92 @@ The values that we analyze most frequently are ADC and fracional anisotropy (FA)
     FA = \sqrt{\frac{(\lambda_1 - \lambda_2)^2 + (\lambda_2 - \lambda_3)^2 + (\lambda_3 - \lambda_1)^2}{\lambda_1^2 + \lambda_2^2 + \lambda_3^2}}
 \end{equation}
 
-\section{Fiber modeling}
+\section{Heart fiber geometry}
 
-We are using Maurer-Cartan description of fibers geometry in our study of heart fibers. \cite{pami2015, savadjiev2012heart, piuzephd, levy1935methode} Indeed the heart fiber structure is a dense and continuous set that we want to model in the best way possible. The Maurer-Cartan method provides good descriptors of smooth manifolds in $\mathbb{R}^3$, using a moving frame. This method of moving frame combined with a minimal surface model and the Generalized Helicoidal model (GHM) can efficiently characterize heart fiber geometry.
+From the 1970s, papers have shown how myofibers in the left ventricule (LV) are aligned in a way that they form helical curves \cite{savadjiev2012heart}. This alignment has proved to be optimal for its mechanical function. Heart fibers stay locally packed together and almost parallel to each other, although they are bundled into a special surface: a generalized helicoid \cite{blair1978generalization}. This is a minimal surface that maintains this property through the whole beat cycle. The bundle of myofibers in generalized helicoids is their characteristic orientation through the heart wall.
 
-\subsection{Theory of moving frames}
+\subsection{The Generalized Helicoid Model (GHM)}
+
+We will introduce a local frame field $\mathbf{f}_1,\mathbf{f}_2,\mathbf{f}_3 : \mathbb{R}^3 \to \mathbb{R}^3$ that will allow us to describre more easily the GHM. In this description,
+\begin{itemize}
+    \item $\mathbf{f}_1$: local orientation of the fiber
+    \item $\mathbf{f}_3$: local heart wall normal
+    \item $\mathbf{f}_2 = \mathbf{f}_3 \times \mathbf{f}_1$: cross product of the other 2 to get a right-handed orthogonal coordinate frame field
+\end{itemize}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=.5\textwidth]{figures/frame_fields}
+    \caption{Examples of possible local frame fields in a world coordinate system $(x, y, z)$}
+    \label{fig:frame_fields}
+\end{figure}
+
+In the GHM model the fiber orientation is expressed at each point $(x, y, z) \in \mathbb{R}^3$ by the function:
+\begin{equation}
+\theta (x, y, z) = \arctan \Bigg( \frac{K_Tx + K_Ny}{1 + K_Nx - K_Ty} \Bigg) + K_Bz
+\end{equation}
+where $\theta$ is the angle $\angle (\overrightarrow{x}, \overrightarrow{y})$
+\begin{itemize}
+    \item $K_T$ causes bending in the tangent direction to the fiber
+    \item $K_N$ makes fibers fan out, away from each other, in the $\mathbf{f}_2$ direction
+    \item $K_B$ copies rotated versions of the fiber in planes parallel to the original $(x, y)$ plane, ie in the direction orthogonal to the heart wall
+\end{itemize}
+In general those values describe the amount of change in fiber orientation when going in each of the direction: tangential, orthogonal and out of plane.\\
+Analyses of these parameters on different species has shown on the entire heart volume \cite{savadjiev2012heart} that the GHM fits with small values of $K_T$ and $K_N$ and high values of $K_B$. This validates the helicoidal model approach and the characteristic of the helix angle in the heart myofiber structure.
+
+\subsection{The Maurer-Cartan form}
+
+The Maurer-Cartan form operator has proved useful in measuring the differential structure of a manifold, and the theory of moving frame has shown good results in the modeling of the heart fiber geometry \cite{pami2015}. The main idea is to apply the theory of moving frames but reverse it: tuning the Maurer-Cartan connection forms can enable us to generate manifolds based on assumptions on the structure that represent in the best way possible the actual heart fiber structure. This approach can be executed by using different fitting methods.
+
+\subsubsection{Theory of moving frames}
 
 We utilize the framework described in \cite{de1990ventricular} to describe the geometry of fiber orientation in the heart wall via rotations of a frame field that is fit to the diffusion MRI data. \\
 Let a point $\mathbf{x} = \sum_i{x_i\mathbf{e_i}} \in \mathbb{R}^3$ be expressed in terms of $(\mathbf{e_1}, \mathbf{e_2}, \mathbf{e_3})$, the natural basis for $\mathbb{R}^3$. \\
-We define a right-handed orthonormal frame field $\mathbf{f_1},\mathbf{f_2},\mathbf{f_3} : \mathbb{R}^3 \to \mathbb{R}^3$. \\ 
-Each frame axis can be expressed by the rigid rotation $f_i = \sum_i{a_{i,j}\mathbf{e_j}}$, where $\mathbf{A} = {a_{i,j}} \in \mathbb{R}^{3 \times 3}$ is a differentiable attitude matrix such that $\mathbf{A}^{-1} = \mathbf{A}^T$. \\
-Treating $\mathbf{f_i}$ and $\mathbf{e_j}$ as symbols, we can write:
+We define a right-handed orthonormal frame field $\mathbf{f}_1,\mathbf{f}_2,\mathbf{f}_3 : \mathbb{R}^3 \to \mathbb{R}^3$. \\ 
+Each frame axis can be expressed by the rigid rotation $f_i = \sum_i{a_{i,j}\mathbf{e}_j}$, where $\mathbf{A} = {a_{i,j}} \in \mathbb{R}^{3 \times 3}$ is a differentiable attitude matrix such that $\mathbf{A}^{-1} = \mathbf{A}^T$. \\
+Treating $\mathbf{f}_i$ and $\mathbf{e}_j$ as symbols, we can write:
 \begin{equation}
 \begin{bmatrix}
-    \mathbf{f_1} \\
-    \mathbf{f_2} \\
-    \mathbf{f_3}
+    \mathbf{f}_1 \\
+    \mathbf{f}_2 \\
+    \mathbf{f}_3
 \end{bmatrix} = \mathbf{A} \times \begin{bmatrix}
-    \mathbf{e_1} \\
-    \mathbf{e_2} \\
-    \mathbf{e_3}
+    \mathbf{e}_1 \\
+    \mathbf{e}_2 \\
+    \mathbf{e}_3
 \end{bmatrix}
 \end{equation}
 
-Since each $\mathbf{e_i}$ is constant, the differential geometry of the frame field is completely characterized by $\mathbf{A}$. Taking the exterior derivative on both sides, we have:
+Since each $\mathbf{e}_i$ is constant, the differential geometry of the frame field is completely characterized by $\mathbf{A}$. Taking the exterior derivative on both sides, we have:
 \begin{equation} \label{eq:1}
 \begin{split}
     \partial \begin{bmatrix}
-                \mathbf{f_1} \\
-                \mathbf{f_2} \\
-                \mathbf{f_3}
+                \mathbf{f}_1 \\
+                \mathbf{f}_2 \\
+                \mathbf{f}_3
             \end{bmatrix} &= (\partial \mathbf{A})\mathbf{A}^{-1}  \begin{bmatrix}
-                \mathbf{f_1} \\
-                \mathbf{f_2} \\
-                \mathbf{f_3}
+                \mathbf{f}_1 \\
+                \mathbf{f}_2 \\
+                \mathbf{f}_3
             \end{bmatrix} \\
             &= \mathbf{C}
             \begin{bmatrix}
-                \mathbf{f_1} \\
-                \mathbf{f_2} \\
-                \mathbf{f_3}
+                \mathbf{f}_1 \\
+                \mathbf{f}_2 \\
+                \mathbf{f}_3
             \end{bmatrix}
 \end{split}
 \end{equation}
 where $\partial$ denotes the exterior derivative, and $\mathbf{C} = (\partial \mathbf{A}) \mathbf{A}^{-1} = (c_{i,j}) \in \mathbb{R}^{3 \times 3}$ is the Maurer-Cartan matrix of connection forms $(c_{i,j})$. \\
 Writing $\mathbf{f}_i$ as symbols, \ref{eq:1} is to be understood as $\partial \mathbf{f}_i = \sum_j{c_{i,j}\mathbf{f}_j}$. \\
 The Maurer-Cartan matrix is skew symmetric with zeros as diagonal entries so there are at most 3 independent, non-zero 1-forms: $c_{1,2}$, $c_{1,3}$, and $c_{2,3}$. \\
+\begin{equation}
+    \mathbf{C} = \begin{pmatrix}
+    0 & c_{1,2} & c_{1,3} \\
+    -c_{1,2} & 0 & c_{2,3} \\
+    -c_{1,3} & -c_{2,3} & 0
+    \end{pmatrix}
+\end{equation}
 1-forms operate on tangent vectors through contraction, written as $\partial \omega \langle \boldsymbol{\upsilon} \rangle \in \mathbb{R}$ for a general 1-form $\partial \omega = \sum_i{\omega_i \mathbf{e_i}}$ and tangent vector $\boldsymbol{\upsilon} \in \mathbb{R}^3$, which yields:
 \begin{equation}
 \begin{split}
@@ -170,26 +210,58 @@ The Maurer-Cartan matrix is skew symmetric with zeros as diagonal entries so the
     &= \sum_i{\omega_i \upsilon_i}
 \end{split}
 \end{equation} since $\partial \mathbf{e_i} \langle \mathbf{e_j} \rangle = \delta_{i,j}$, where $\delta_{i,j}$ is the Kronecker delta. \\
-It turns out that the space of linear models for smoothly varying frame fields is parametrized by the 1-forms $c_{i,j}$. Since only 3 unique non-zero combinations of $c_{i,j}$ are possible, there are in total 9 connections $c_{i,j,k}$. These coefficients express the rate of turn of the frame vector $\mathbf{f}_i$ towards $\mathbf{f}_j$ when $\mathbf{x}$ moves in the direction $\mathbf{f}_k$. 
+It turns out that the space of linear models for smoothly varying frame fields is parametrized by the 1-forms $c_{i,j}$. Since only 3 unique non-zero combinations of $c_{i,j}$ are possible, there are in total 9 connections $c_{i,j,k}$ that fully characterize the local frame field geometry.\\
 
-\subsection{Application to heart fiber geometry}
+\subsubsection{Tuning connection form parameters by energy minimization}
 
-With $\mathbf{f}_1$ taken as the local orientation of a fiber and $\mathbf{f}_3$ taken to be the component of the heart wall normal orthogonal to $\mathbf{f}_1$, \ref{fig:c123theory} illustrates the connection $c_{1,2,3}$, which measures the rotation of fibers for a trans-mural penetration of the wall.\\
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=.5\textwidth]{figures/fibers_neighborhood3d}
+    \caption{Example of a fiber neighborhood of 27: the center fiber (dark blue) is where we will have a first guess for the values of the connection forms $c_{i,j,k}$ and then will run an energy minimization algorithm to come up with parameters that give the same orientation for the neighbors as we can see in the ground truth here}
+    \label{fig:fibers_neighborhood3d}
+\end{figure}
 
-\begin{figure}[h]
+Finding out the correct values for the connection form parameters $c_{i,j,k}(\mathbf{x}) \forall \mathbf{x} \in \mathbb{R}^3$ is done by energy minimization within a neighborhood $\Omega$ \ref{fig:fibers_neighborhood3d}. This approach makes sense as the GHM is still dependent on the location in the heart, indeed the rate of turning will not be the same close to the apex for instance or where the heart wall is thinner.\\
+Therefore the optimal parameters are defined as follows:
+\begin{align*}
+    c^*_{i,j,k}(\mathbf{x}) &= \text{argmin}_{c_{i,j,k}} \frac{1}{\Omega} \sum_{\mathbf{v} \in \Omega} \sum_{i = 1}^3 \epsilon_i(\mathbf{x} + \mathbf{v}) \\
+    \epsilon_i(\mathbf{x} + \mathbf{v}) &= \arccos \Big( \mathbf{f}_i(\mathbf{x} + \mathbf{v}) . \mathbf{\tilde{f}}_i(\mathbf{x} + \mathbf{v}) \Big)
+\end{align*}
+where:
+\begin{itemize}
+    \item $\epsilon_i$ is the error function for each axis 
+    \item $\mathbf{f}_i$ is the actual frame orientation at this location
+    \item $\mathbf{\tilde{f}}_i$ is the current approximation of the frame orientation
+\end{itemize}
+The optimization strategy can be one of the standard well-known algorithms for these specific tasks: either Nelder-Mead \cite{press2007numerical} or BOBYQA \cite{powell2009bobyqa}.
+
+\subsection{Combining both for a good description of heart fiber geometry}
+
+The heart is made of elongated muscle cells called cardiomyocytes that are organized within a collagen matrix. The macroscopic shape is one of a truncated ellipsoid, while on a microscopic scale myocytes are stacked and form myofibers.\\
+Work on histology has shown how cardiac myofibers wrap around the ventricules in helical curves. The ubiquitous analysis of myofiber geometry states out that the helix angle - $\theta$ or $c_{1,2,3}$ in previous sections, or the angle $\angle (\overrightarrow{\mathbf{f}^{i}_1}, \overrightarrow{\mathbf{f}^{i+1}_2})$ where $i$ is a tangent plane to the heart wall at this location - varies smoothly \ref{fig:helix_angle} with a total change \ref{fig:total_angle} of around 120° for mammals.\\
+\begin{figure}[!h]
     \centering
     \begin{subfigure}[t]{.48\textwidth}
-        \includegraphics[width=\textwidth]{figures/c123}
-        \caption[b]{Geometry evolving as we move in the direction of $\mathbf{F_3}$, with the color getting more intense as we move out of plane}
-        \label{fig:c123}
+        \includegraphics[width=\textwidth]{figures/total_angle}
+        \caption[b]{Visualization of the helix angle with a transmural point of view}
+        \label{fig:total_angle}
     \end{subfigure}
     \begin{subfigure}[t]{.48\textwidth}
         \includegraphics[width=\textwidth]{figures/helix_angle}
-        \caption{Most significant rotation the heart we will focus on}
+        \caption{The helix angle varies smoothly from one tangent plane to the other from the epicardium to the endocardium}
         \label{fig:helix_angle}
     \end{subfigure}
-    \caption{Signification of Maurer-Cartan forms, and more specifically $c_{1,2,3}$ in the chosen configuration on heart data}
+    \caption{Helix angle}
 \end{figure}
+\\
+Applying this method to the heart can be done by choosing $\mathbf{f}_i$ as described previously in the GHM model. $\mathbf{f}_1$ is easy to set from the DTI data, while $\mathbf{f}_3$ is determined locally by an approximation of the transmural direction at each location using a mask of the studied heart and a euclidian distance computed between the epicardium (outtermost layer of the heart wall) and endocardium (innermost layer) of the heart.\\
+The Maurer-Cartan connection form approach is a good one to describe the cardiac frame field, where the 3 main geometrical features are exhibited by parameters of this model:
+\begin{itemize}
+    \item $c_{1,2,3}$ for the helix angle, or trans-mural penetration of the heart wall
+    \item $c_{1,3,1}$ quantifies the short-axis (in plane for a given slice) curvature of the heart wall
+    \item $c_{2,3,2}$ represents the long-axis (from one slice to another) curvature
+\end{itemize}
+As a reminder, in general, these coefficients $c_{i,j,k}$ express the rate of turn of the frame vector $\mathbf{f}_i$ towards $\mathbf{f}_j$ when $\mathbf{x}$ moves in the direction $\mathbf{f}_k$.
 
 \section{Infarcts and their impact on heart fiber geometry}
 

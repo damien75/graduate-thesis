@@ -2,46 +2,58 @@
 
 \chapter{Experimental Setup}
 
-\section{Pig Hearts}
+The data on which our results are based are all porcine hearts that were gratefully provided to us by Mihaela Pop from the Sunnybrooke University.
 
-In this study we used healthy and infarcted porcine hearts. The hearts were freshly excised, suspended in a plexiglass phantom filled with fluorinert (to eliminate artifacts) and placed in an MR head coil for ex vivo imaging. All DW-MR studies were performed on a dedicated 1.5T GE Signa Excite scanner using a custom FSE pulse sequence. We used the following MR parameters: TE = 35 ms, TR = 700 ms, echo train length = 2, b value = 0 for the unweighted MR images and b value = 500 s/mm2 when the 7 diffusion gradients were applied, respectively. We used a $256 \times 256$ k-space, FOV = 10-16 cm and a slice thickness of 1.2 mm, yielding a sub-millimetric voxel size. \\
-From each heart, select samples containing an infarct were cut to align with the short-axis view of the MR images and prepared for histopathology to confirm the collagen deposition in the infarct area. \ref{fig:histology_pig_4} shows a histology image of a slide from an infarcted heart, with intact myocytes in the normal tissue and altered tissue microstructure in the infarcted zone. As depicted by the Masson Trichrome stain, the ischemic border zone (BZ) had collagen fibrils interdigitated between viable myocytes. In the dense scar area, necrotic myocytes were completely replaced by mature fibrosis (the final product of collagen degradation), resulting in the loss of myocardial anisotropy.\\\\\\
+\section{Data acquisition of pig infarcted and healthy hearts}
+
+Each porcine heart studied in this thesis were freshly excised, suspended in a plexiglass phantom filled with fluorinert (to eliminate artifacts) and placed in an MR head coil for ex-vivo imaging. All DW-MR studies were performed on a dedicated 1.5T GE Signa Excite scanner using a custom FSE pulse sequence. They used the following MR parameters: 
+\begin{itemize}
+    \item $TE = 35$ ms
+    \item $TR = 700$ ms
+    \item echo train length $=2$
+    \item $b = 0$ for the unweighted MR images. As a reminder, the b factor is explained in \ref{dw_imaging}
+    \item $b = 500 $ s/$\text{mm}^2$ for the images where the 7 diffusion gradients were applied
+    \item $256 \times 256$ k-space
+    \item Field of View $FOV = 10-16$ cm
+    \item Slice Thickness $ = 1.2$ mm, yielding a sub-millimetric voxel size
+\end{itemize}
+From each heart, select samples containing an infarct were cut to align with the short-axis view of the MR images and prepared for histopathology to confirm the collagen deposition in the infarct area. One of the difficulties that remains is to try and find a good correspondence between the slices from the histology and the ones that were obtained from the imaging that occured before the histopathology was performed.  \ref{fig:histology_pig_4} shows a histology image of a slide from an infarcted heart, with intact myocytes in the normal tissue and altered tissue microstructure in the infarcted zone. As depicted by the Masson Trichrome stain, the ischemic border zone (BZ) had collagen fibrils interdigitated between viable myocytes. In the dense scar area, necrotic myocytes were completely replaced by mature fibrosis (the final product of collagen degradation), resulting in the loss of myocardial anisotropy.\\\\\\
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\textwidth]{figures/histology_pig_4}
+    \includegraphics[width=\textwidth]{figures/Gip4_histology}
     \caption{Histology of a slice of infarcted heart nb 4}
     \label{fig:histology_pig_4}
 \end{figure}
 
 \section{Source of input data}
 
-The data we have been using are DT-MRI of porcine hearts, both healthy for comparison and infarcted. We have had access to 10 hearts including 2 healthy. For every infarcted heart, the imaging process took place 6 weeks after infarct and histology was then done for most of the cases, which allows us to compare our observations to the ground truth.
+The data we have been using are DT-MRI of porcine hearts, both healthy for comparison and infarcted. We have had access to 10 hearts including 2 healthy. For every infarcted heart, the imaging process took place 6 weeks after infarct and histology was done after that for some of the cases - as it is an expensive process - which allows us to compare our observations to the ground truth. Here is an overview of the data we had access to and its usability:
 
 \begin{center}
  \begin{tabular}{|c | c | c | c|} 
  \hline
- Heart & Region of infarct \\
+ Heart & Infarcted or Healthy & Region of infarct \\
  \hline
- 2 & LCX \\ 
+ 2 & Infarcted & Left Circumflex artery (LCX) \\ 
  \hline
- 4 & LAD \\
+ 4 & Infarcted & Left Anterior Descending (LAD) \\
  \hline
- 5 & LCX \\
+ 5 & Infarcted & LCX \\
  \hline
- 6 & ? \\
+ 6 & Infarcted & ? \\
  \hline
- 7 & ? \\ 
+ 7 & Infarcted & ? \\ 
  \hline
- 17 & ? \\
+ 17 & Infarcted & ? \\
  \hline
- 18 & ? \\
+ 18 & Infarcted & ? \\
  \hline
- 23 & ? \\
+ 23 & Infarcted & ? \\
  \hline
- 25 & Healthy \\
+ 25 & Healthy & - \\
  \hline
- 28 & ? \\
+ 28 & Infarcted & ? \\
  \hline
 \end{tabular}
 \end{center}

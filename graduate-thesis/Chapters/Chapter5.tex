@@ -88,17 +88,17 @@ The number of voxels that count in our computations is the number of voxels wher
 
 \subsection{Error of fit vs ADC and FA}
 
-\begin{figure}
+\begin{figure}[h!]
     \centering
-    \begin{subfigure}{.31\textwidth}
-        \includegraphics[width=\textwidth]{figures/pig2_err_31}
-        \caption{Error of fit}
-        \label{fig:pig2_err}
-    \end{subfigure}
     \begin{subfigure}{.31\textwidth}
         \includegraphics[width=\textwidth]{figures/pig2_adc_31}
         \caption{ADC map}
         \label{fig:pig2_adc}
+    \end{subfigure}
+    \begin{subfigure}{.31\textwidth}
+        \includegraphics[width=\textwidth]{figures/pig2_err_31}
+        \caption{Error of fit}
+        \label{fig:pig2_err}
     \end{subfigure}
     \begin{subfigure}{.31\textwidth}
         \includegraphics[width=\textwidth]{figures/pig2_fa_31}
@@ -107,70 +107,69 @@ The number of voxels that count in our computations is the number of voxels wher
     \end{subfigure}
     \caption{Pig 2: Error of fit computed using our framework compared to ADC and FA map}
     \label{fig:pig2}
-\end{figure}
 
-\begin{figure}
-    \centering
-    \begin{subfigure}{.31\textwidth}
-        \includegraphics[width=\textwidth]{figures/pig4_err_21}
-        \caption{Error of fit}
-        \label{fig:pig4_err}
-    \end{subfigure}
+
     \begin{subfigure}{.31\textwidth}
         \includegraphics[width=\textwidth]{figures/pig4_adc_21}
         \caption{ADC map}
         \label{fig:pig4_adc}
     \end{subfigure}
     \begin{subfigure}{.31\textwidth}
+        \includegraphics[width=\textwidth]{figures/pig4_err_21}
+        \caption{Error of fit}
+        \label{fig:pig4_err}
+    \end{subfigure}
+    \begin{subfigure}{.31\textwidth}
         \includegraphics[width=\textwidth]{figures/pig4_fa_21}
         \caption{FA map}
         \label{fig:pig4_fa}
     \end{subfigure}
-    \caption{Pig 4: Error of fit computed using our framework compared to ADC and FA map}
+    \caption{Pig 4}
     \label{fig:pig4}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \begin{subfigure}{.31\textwidth}
-        \includegraphics[width=\textwidth]{figures/pig5_err_22}
-        \caption{Error of fit}
-        \label{fig:pig5_err}
-    \end{subfigure}
+    
     \begin{subfigure}{.31\textwidth}
         \includegraphics[width=\textwidth]{figures/pig5_adc_22}
         \caption{ADC map}
         \label{fig:pig5_adc}
     \end{subfigure}
     \begin{subfigure}{.31\textwidth}
+        \includegraphics[width=\textwidth]{figures/pig5_err_22}
+        \caption{Error of fit}
+        \label{fig:pig5_err}
+    \end{subfigure}
+    \begin{subfigure}{.31\textwidth}
         \includegraphics[width=\textwidth]{figures/pig5_fa_22}
         \caption{FA map}
         \label{fig:pig5_fa}
     \end{subfigure}
-    \caption{Pig 5: Error of fit computed using our framework compared to ADC and FA map}
+    \caption{Pig 5}
     \label{fig:pig5}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \begin{subfigure}{.31\textwidth}
-        \includegraphics[width=\textwidth]{figures/pig6_err_24}
-        \caption{Error of fit}
-        \label{fig:pig6_err}
-    \end{subfigure}
+    
     \begin{subfigure}{.31\textwidth}
         \includegraphics[width=\textwidth]{figures/pig6_adc_24}
         \caption{ADC map}
         \label{fig:pig6_adc}
     \end{subfigure}
     \begin{subfigure}{.31\textwidth}
+        \includegraphics[width=\textwidth]{figures/pig6_err_24}
+        \caption{Error of fit}
+        \label{fig:pig6_err}
+    \end{subfigure}
+    \begin{subfigure}{.31\textwidth}
         \includegraphics[width=\textwidth]{figures/pig6_fa_24}
         \caption{FA map}
         \label{fig:pig6_fa}
     \end{subfigure}
-    \caption{Pig 6: Error of fit computed using our framework compared to ADC and FA map}
+    \caption{Pig 6}
     \label{fig:pig6}
 \end{figure}
+
+These figures give us a good understanding and overview of how the error of fit can provide supplementary information compared to what the ADC and FA map can give us.\\
+If we focus on the first example \ref{fig:pig2}, we can clearly see in the ADC map \ref{fig:pig2_adc} the region of the infarct where the value is the highest (yellow region); and it really gives the impression of a scar region that contains almost only collagen and no fibrous tissue whatsoever given the apparent anisotropy. But if we look at the FA map \ref{fig:pig2_fa} we can start wondering if there is not a region close to the endocardium where fibers have either resisted or been reconstructed after the infarct in this region.\\
+As for the error of fit, it gives a clear indication of the existence of layers of fibers near the endocardium that still makes the connection with the rest of the heart possible and the contraction, even if badly hindered by the infarct and loss of muscle fibers, still possible.\\
+This arrangement of the surviving fibers as described in the literature overviewed in \ref{surviving_fibers} is also clearly visible in the examples displayed in \ref{fig:pig4} and \ref{fig:pig5}.\\
+The last example \ref{fig:pig6} is also a very interesting sample to compare our method to, and it shows that in some cases as mentioned in \cite{ursell1985structural}, intramural muscles seem to be completely absent in this case and can gravely hinder the contraction of the heart.\\
+Our approach seems to be more tolerant in the exhibition of surviving fibers in the infarct region and in some cases show how CR can make the infarct region still a little contractile.
 
 \subsection{Discussion}
 

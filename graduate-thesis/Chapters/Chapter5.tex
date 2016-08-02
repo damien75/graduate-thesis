@@ -47,7 +47,7 @@ Thanks to the Rician smoothing it is again possible to guess the helix angle tur
 
 Using the fiber orientation that we can get from the computed tensor matrix, we can run tractography on our results. This process gives us an idea of how fibers should be wrapped around the heart and work together in the muscle structure. Looking at the tractography run on the raw data \ref{fig:pig4_tracto_no_smooth} it is hard to see where the infarct would be by just looking at the tracing of existing fibers and trying to infer their direction. The infarct region, as explained in \cite{wu2007mr}, should be the region with the least coherence in its fiber directions whereas regions remote from the infarct should not be affected in their structure.\\
 Looking at the tractography run on the Rician smoothed data \ref{fig:pig4_tracto_smooth} on the other hand gives a clear hint on the region where the infarct is present (LAD) whereas remote regions do not seem affected by this and wrap smoothly around the heart.\\
-Finally, looking at histograms \ref{fig:pig6_histograms} we can get from our procedure to look at statistics on the visualized information presented, we see several clear indications that smoothing will be a capital step in our further analysis of our datasets:
+Finally, looking at histograms \ref{fig:histogram_pig6_no_smooth} and \ref{fig:histogram_pig6_smooth} we can get from our procedure to look at statistics on the visualized information presented, we see several clear indications that smoothing will be a capital step in our further analysis of our datasets:
 \begin{enumerate}
     \item Shape of Gaussians we get from the datasets. The center is much better defined in for the smoothed data \ref{fig:histogram_pig6_smooth} as well as overall shape which is less spiky
     \item The number of voxels that count in our computations: from $1564$ with raw unfiltered data \ref{fig:histogram_pig6_no_smooth} to $59187$ after the Rician filter \ref{fig:histogram_pig6_smooth}
@@ -68,22 +68,6 @@ The number of voxels that count in our computations is the number of voxels wher
     \end{subfigure}
     \caption{Tractography of heart fibers for pig 4}
     \label{fig:pig4_tractos}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \begin{subfigure}{.48\textwidth}
-        \includegraphics[width=\textwidth]{figures/histogram_pig6_no_smooth}
-        \caption{Without any smoothing}
-        \label{fig:histogram_pig6_no_smooth}
-    \end{subfigure}
-    \begin{subfigure}{.48\textwidth}
-        \includegraphics[width=\textwidth]{figures/histogram_pig6_smooth}
-        \caption{With Rician smoothing}
-        \label{fig:histogram_pig6_smooth}
-    \end{subfigure}
-    \caption{Histogram of model fitting on raw and smoothed data}
-    \label{fig:pig6_histograms}
 \end{figure}
 
 \subsection{Error of fit vs ADC and FA}
@@ -218,3 +202,40 @@ Supplementing the earlier results in Fig. 1, Fig 3 compares ADC maps (top row) w
 \section{Quantitative Results}
 
 Given the association between ADC and our error of frame fit, it is natural to compare these measures quantitatively throughout the myocardium. We did so for the 5 infarcted porcine hearts we analyzed by computing Dice coefficients to describe the overlap, in the following manner. For the same heart let A be the set of voxels with ADC value > 0.6 and let B be the set of voxels with error of fit > 15 degrees. We computed the standard Dice coefficient A∩B/A∪B as well as a modified coefficient A∩B/A. These results, shown in Table. 1 (left), demonstrate that typically over 80\% of the locations with increased diffusion also yield a high error of fit using our frame fitting method, due to the loss of geometric coherence of fiber orientations. However there are additional locations where fiber orientations are not smooth, typically at the linings of the heart wall, or near the edges of a collapsing and narrow right ventricle. These
+
+\subsection{Histograms of connection forms} \label{histogram_section}
+
+Here are examples of the histograms that we computed on the entire heart for every usable example that we had. The histogram \ref{fig:histogram_pig6_smooth} gives us information on the distribution of $\forall (i, j, k) \in [1, 3]^3, c_{i,j,k}$ and the distribution of the error of fit for each frame axis $\mathbf{f}_1, \mathbf{f}_2$ and $\mathbf{f}_3$.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{figures/histogram_pig6_no_smooth}
+    \caption{Without any smoothing}
+    \label{fig:histogram_pig6_no_smooth}
+\end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{figures/histogram_pig6_smooth}
+    \caption{With Rician smoothing}
+    \label{fig:histogram_pig6_smooth}
+\end{figure}
+
+\begin{center}
+    \begin{tabular}{|c | c | c | c| c| c|} 
+         \hline
+         Heart & \shortstack{Thickness \\ (\# voxels)} & \shortstack{$c_{1,2,3}$ mean \\ rad/voxel} & \shortstack{$c_{1,2,3}$ mode \\ rad/voxel} & \shortstack{Total helix angle \\ (using mean)} & \shortstack{Total helix angle \\ (using mode)}\\
+         \hline
+         2 & 40 & -0.066 & -0.025 & -151.2 & -57.3 \\ 
+         \hline
+         4 & 45 & -0.084 & -0.047 & -216.6 & -121.2 \\
+         \hline
+         5 & 30 & -0.048 & -0.020 & -82.5 & -34.38 \\
+         \hline
+         6 & 30 & -0.069 & -0.053 & -118.6 & -91.1 \\
+         \hline
+         7 & 45 & -0.077 & -0.053 & -198.5 & -136.6 \\ 
+         \hline
+         25 & 35 & -0.072 & -0.034 & -144.4 & -68.2 \\
+         \hline
+    \end{tabular}
+\end{center}

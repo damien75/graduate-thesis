@@ -2,24 +2,18 @@
 
 \section{Modeling fiber geometry using connection forms}
 
- The histograms of $c_{1,2,3}$ for these cases are discussed in Section ???. \\
+The histograms of $c_{1,2,3}$ for these cases are discussed in Section \ref{histogram_section}.
+
 \begin{figure}[h!]
     \centering
-    \begin{subfigure}[h!]{0.3\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{figures/c123}
-        \caption{$c_{1,2,3}$}
-        \label{fig:c123theory}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[h!]{0.3\textwidth}
+    \begin{subfigure}[h!]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{figures/pig4_c123_slice_19}
         \caption{$c_{1,2,3}$ (infarcted)}
         \label{fig:c123infarcted}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[h!]{0.3\textwidth}
+    \begin{subfigure}[h!]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{figures/pig25_c123_slice_30}
         \caption{$c_{1,2,3}$ (healthy)}
@@ -29,16 +23,18 @@
     \label{fig:c123all}
 \end{figure}
 
- Connection forms measure the local rotations of the frame axes $\mathbf{f}_1, \mathbf{f}_2, \mathbf{f}_3$. Here we focus on the contraction of the 1-form $c_{1,2}$ on the frame axes $\mathbf{f}_3$ and compare its values in a short axis slice of a pig heart with an infarct \ref{fig:c123infarct} with those in a short axis slice from a healthy pig heart \ref{fig:c123healthy}. \\
+Connection forms measure the local rotations of the frame axes $\mathbf{f}_1, \mathbf{f}_2, \mathbf{f}_3$. Here we focus on the contraction of the 1-form $c_{1,2}$ on the frame axes $\mathbf{f}_3$ and compare its values in a short axis slice of a pig heart with an infarct \ref{fig:c123infarcted} with those in a short axis slice from a healthy pig heart \ref{fig:c123healthy}.\\
+On a qualitative approach, looking at the colors and comparing the smoothness of figures \ref{fig:c123infarcted} with the control health \ref{fig:c123healthy}, we can already notice how in the healthy case and in regions remote from the infarct in the infarcted case we have smooth and regular colors which represent a rather constant value of $c_{1,2,3}$. Whereas in the infarct region, it is clear that the values vary a lot more and give a strong impression of a lack of coherence.\\
+A more quantitative approach will be discussed in Section \ref{histogram_section}.
  
  \begin{figure}
      \centering
      \includegraphics[width=\textwidth]{figures/pig4_error_of_fit_slice_19}
-     \caption{Error of fit}
+     \caption{Error of fit, giving the absolute angle difference between our estimation from the connection forms and the ground truth}
      \label{fig:error_of_fit}
  \end{figure}
  
-Cartan frame field analysis applies to smoothly rotating frame fields. In the presence of infarcts fiber orientation coherence is lost. The connections then fail to explain the orientation of fibers in a local neighborhood and fitting errors using this method go up \ref{fig:error_of_fit}. This association of frame field fitting error with fiber incoherence is the key insight behind the developments in this paper.
+Cartan frame field analysis applies to smoothly rotating frame fields. In the presence of infarcts fiber orientation coherence is lost. The connections then fail to explain the orientation of fibers in a local neighborhood and fitting errors using this method go up \ref{fig:error_of_fit}. This association of frame field fitting error with fiber incoherence is the key insight behind the developments in this thesis.
 
 \section{Cartan Frame Fitting and Error Analysis}
 

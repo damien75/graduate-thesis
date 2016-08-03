@@ -65,6 +65,6 @@ Due to the imaging technology used, and to the fact that a fairly low Tesla inte
 
 \section{Usage of MedInria software to read the DICOMs}
 
-We took the advantage of the MedInria tool to load the DICOM images, process the data through the Rician denoising method and finally use their Diffusion Tensor Imaging tool to compute the value of the tensor matrix at each voxel location in the heart. \\
+We took the advantage of the MedInria tool to load the DICOM images, process the data through the Rician denoising method and finally use their Diffusion Tensor Imaging tool to compute the value of the tensor matrix \ref{diffusion_tensor_matrix} at each voxel location in the heart. \\
 From the tensor matrices at every location, we were easily able to compute the fiber orientation at every location with a potential flip in the sense of the vector. Cylindrical consistency was used to enforce a consistent sense throughout the heart. \\
 Once we have the fiber orientation at every voxel, we can use our previous work to compute the connection forms and get an approximative appreciation of the quality of the fitting, depending on hyper parameters that have to be fine tuned by mostly on the coherence of the underlying data.

@@ -96,7 +96,7 @@ with the following:
     \item $b$ factor suggested by LeBihan: $b = \gamma^2G^2\delta^2(\Delta - \frac{\delta}{3})||\mathbf{G}||^2$
 \end{itemize}
 
-\subsection{To get a diffusion tensor matrix}
+\subsection{To get a diffusion tensor matrix} \label{diffusion_tensor_matrix}
 
 Diffusion anisotropy can be described mathematically by a 3x3 diffusion tensor:
 \begin{equation}
@@ -174,8 +174,8 @@ Treating $\mathbf{f}_i$ and $\mathbf{e}_j$ as symbols, we can write:
 \end{equation}
 
 Since each $\mathbf{e}_i$ is constant, the differential geometry of the frame field is completely characterized by $\mathbf{A}$. Taking the exterior derivative on both sides, we have:
-\begin{equation} \label{eq:1}
-\begin{split}
+
+\begin{align} \label{eq:1}
     \partial \begin{bmatrix}
                 \mathbf{f}_1 \\
                 \mathbf{f}_2 \\
@@ -191,11 +191,12 @@ Since each $\mathbf{e}_i$ is constant, the differential geometry of the frame fi
                 \mathbf{f}_2 \\
                 \mathbf{f}_3
             \end{bmatrix}
-\end{split}
-\end{equation}
+\end{align}
+
 where $\partial$ denotes the exterior derivative, and $\mathbf{C} = (\partial \mathbf{A}) \mathbf{A}^{-1} = (c_{i,j}) \in \mathbb{R}^{3 \times 3}$ is the Maurer-Cartan matrix of connection forms $(c_{i,j})$. \\
 Writing $\mathbf{f}_i$ as symbols, \ref{eq:1} is to be understood as $\partial \mathbf{f}_i = \sum_j{c_{i,j}\mathbf{f}_j}$. \\
-The Maurer-Cartan matrix is skew symmetric with zeros as diagonal entries so there are at most 3 independent, non-zero 1-forms: $c_{1,2}$, $c_{1,3}$, and $c_{2,3}$. \\
+The Maurer-Cartan matrix is skew symmetric with zeros as diagonal entries so there are at most 3 independent, non-zero 1-forms: $c_{1,2}$, $c_{1,3}$, and $c_{2,3}$.
+
 \begin{equation}
     \mathbf{C} = \begin{pmatrix}
     0 & c_{1,2} & c_{1,3} \\
@@ -203,16 +204,24 @@ The Maurer-Cartan matrix is skew symmetric with zeros as diagonal entries so the
     -c_{1,3} & -c_{2,3} & 0
     \end{pmatrix}
 \end{equation}
+
 1-forms operate on tangent vectors through contraction, written as $\partial \omega \langle \boldsymbol{\upsilon} \rangle \in \mathbb{R}$ for a general 1-form $\partial \omega = \sum_i{\omega_i \mathbf{e_i}}$ and tangent vector $\boldsymbol{\upsilon} \in \mathbb{R}^3$, which yields:
-\begin{equation}
-\begin{split}
+
+\begin{align}
     \partial \omega \langle \boldsymbol{\upsilon} \rangle &= \sum_i{\omega_i \partial \mathbf{e_i}} \big{\langle} \sum_j{\upsilon_j \mathbf{e_j}} \big{\rangle} \\
     &= \sum_i{\omega_i \upsilon_i}
-\end{split}
-\end{equation} since $\partial \mathbf{e_i} \langle \mathbf{e_j} \rangle = \delta_{i,j}$, where $\delta_{i,j}$ is the Kronecker delta. \\
-It turns out that the space of linear models for smoothly varying frame fields is parametrized by the 1-forms $c_{i,j}$. Since only 3 unique non-zero combinations of $c_{i,j}$ are possible, there are in total 9 connections $c_{i,j,k}$ that fully characterize the local frame field geometry.\\
+\end{align}
 
-\subsubsection{Tuning connection form parameters by energy minimization}
+since
+
+\begin{equation}
+    \partial \mathbf{e}_i \langle \mathbf{e}_j \rangle = \delta_{i,j}
+\end{equation}
+
+where $\delta_{i,j}$ is the Kronecker delta.
+It turns out that the space of linear models for smoothly varying frame fields is parametrized by the 1-forms $c_{i,j}$. Since only 3 unique non-zero combinations of $c_{i,j}$ are possible, there are in total 9 connections $c_{i,j,k}$ that fully characterize the local frame field geometry.
+
+\subsubsection{Tuning connection form parameters by energy minimization} \label{fitting_method}
 
 \begin{figure}[h!]
     \centering

@@ -1,0 +1,93 @@
+\documentclass[12pt,Bold,letterpaper,TexShade]{mcgilletdclass}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[dvips]{geometry}
+\usepackage{mathtools}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\addtolength{\hoffset}{0pt}                        
+\addtolength{\voffset}{0pt}                        
+\usepackage{amsthm}
+\usepackage{rotating}
+\usepackage{adjustbox}
+\usepackage{longtable}
+\usepackage{indentfirst}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+
+
+
+
+
+
+\include{Title/title_page}
+
+\makeindex[keylist]
+\makeindex[abbr]
+
+\listfiles%
+\begin{document}
+
+\maketitle%
+
+\begin{romanPagenumber}{2}%
+
+\SetDedicationName{\MakeUppercase{Dedication}}%
+\SetDedicationText{\include*{Dedication/dedication_page}}%
+\Dedication%
+
+\SetAcknowledgeName{\MakeUppercase{Acknowledgements}}%
+\SetAcknowledgeText{\include*{Acknowledgement/acknowledgment_page}}%
+\Acknowledge%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%         English Abstract                        %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\SetAbstractEnName{\MakeUppercase{Abstract}}%
+\SetAbstractEnText{ This thesis considers a method for computing skeletal representations based on the average outward flux (AOF) of the gradient of the Euclidean distance function to the boundary of a 2D object through the boundary of a region that is shrunk. It then shows how the original method, developed by Dimitrov \textit{et al.}  can be optimized and made more efficient and proposes an algorithm for computing flux invariants which is a number of times faster. It further exploits a relationship between the AOF and the object angle at endpoints, branch points and regular points of the skeleton to obtain more complete boundary reconstruction results than those demonstrated in prior work. Using this optimized implementation, new measures for skeletal simplification are proposed based on two criteria: the uniqueness of an inscribed disk as a tool for defining salience, and the limiting average outward flux value. The simplified skeleton when abstracted as a directed graph is shown to be far less complex than popular skeletal graphs in the literature, such as the shock graph, by a number of graph complexity measures including: number of nodes, number of edges, depth of the graph, number of skeletal points, and the sum of topological signature vector (TSV) values. We conclude the thesis by applying the simplified graph to a view-based object recognition experiment previously arranged for shock graphs. The results suggest that our new simplified graph yields recognition scores very close to those obtained using shock graphs but with a smaller number of nodes, edges, and skeletal points.  }
+\AbstractEn%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%         French Abstract                         %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\SetAbstractFrName{\MakeUppercase{ABR\'{E}G\'{E}}}%
+\SetAbstractFrText{Ce m\'{e}moire propose une m\'{e}thode pour calculer des repr\'{e}sentations squelettiques en fonction du flux moyen d\'{e}crit par le gradient de la fonction de distance Euclidienne aux limites d'un objet 2D qui r\'{e}tr\'{e}cit.  La m\'{e}thode originale d\'{e}velopp\'{e}e par Dimitrov \textit{et al.}  est ensuite optimis\'{e}e afin de calculer des invariants de flux plus rapidement. Une relation entre l'AOF et l'angle de l'objet aux extr\'{e}mit\'{e}s (aux points de branches et des points r\'{e}guliers du squelette) est exploit\'{e}e afin d'obtenir une reconstruction plus pr\'{e}cises des limites de l'objet par rapport aux travaux pr\'{e}c\'{e}dents. En utilisant cette impl\'{e}mentation optimis\'{e}e, de nouvelles mesures de simplification de squelettes sont propos\'{e}es selon deux crit\`{e}res: l'unicit\'{e} d'un disque inscrit comme un outil permettant de d\'{e}finir la saillance, et la limitation de la moyenne du flux \'{a} l'ext\'{e}rieur. Il est d\'{e}montr\'{e} que le squelette simplifi\'{e}, abstrait par un graphe orient\'{e}, est beaucoup moins complexe que des graphes squelettiques conventionnels mentionn\'{e}s dans la litt\'{e}rature, tel que le graphe de choc. Les mesures de complexit\'{e} de graphe comprennent le nombre de nœuds, le nombre de bords, la profondeur du graphe, le nombre de points du squelette et la somme des valeurs du vecteur des signes topologiques (TSV). La th\`{e}se se finit en appliquant le graphe simplifi\'{e} au probl\`{e}me de reconnaissance d'objets bas\'{e}e sur la vue, pr\'{e}alablement adapt\'{e} pour l'utilisation de graphes de choc. Les r\'{e}sultats sugg\`{e}rent que notre nouveau graphe simplifi\'{e} atteint des performances similaires \`{a} celles des graphes de choc, mais avec moins de nœuds, de bords et de points du squelette plus rapide.}%
+\AbstractFr%
+
+
+
+
+\TOCHeading{\MakeUppercase{Table of Contents}}%
+\LOTHeading{\MakeUppercase{List of Tables}}%
+\LOFHeading{\MakeUppercase{List of Figures}}%
+\tableofcontents %
+\listoftables %
+\listoffigures %
+
+\end{romanPagenumber}
+
+%\mainmatter %
+ 
+\input{Chapters/Chapter1}
+\input{Chapters/Chapter2}
+\input{Chapters/Chapter3}
+\input{Chapters/Chapter4}
+\input{Chapters/Chapter5}
+
+
+\bibHeading{References}
+\bibliographystyle{plain}
+\bibliography{myrefs}
+
+
+\end{document}
+
+
+
+
+
+
+

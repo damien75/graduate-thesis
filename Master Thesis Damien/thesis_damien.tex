@@ -35,11 +35,11 @@
 \begin{romanPagenumber}{2}%
 
 \SetDedicationName{\MakeUppercase{Dedication}}%
-\SetDedicationText{\include*{Dedication/dedication_page}}%
+\SetDedicationText{\input{Dedication/dedication_page}}%
 \Dedication%
 
 \SetAcknowledgeName{\MakeUppercase{Acknowledgements}}%
-\SetAcknowledgeText{\include*{Acknowledgement/acknowledgment_page}}%
+\SetAcknowledgeText{\input{Acknowledgement/acknowledgment_page}}%
 \Acknowledge%
 
 
@@ -47,7 +47,7 @@
 %%         English Abstract                        %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \SetAbstractEnName{\MakeUppercase{Abstract}}%
-\SetAbstractEnText{ This thesis considers a method for computing skeletal representations based on the average outward flux (AOF) of the gradient of the Euclidean distance function to the boundary of a 2D object through the boundary of a region that is shrunk. It then shows how the original method, developed by Dimitrov \textit{et al.}  can be optimized and made more efficient and proposes an algorithm for computing flux invariants which is a number of times faster. It further exploits a relationship between the AOF and the object angle at endpoints, branch points and regular points of the skeleton to obtain more complete boundary reconstruction results than those demonstrated in prior work. Using this optimized implementation, new measures for skeletal simplification are proposed based on two criteria: the uniqueness of an inscribed disk as a tool for defining salience, and the limiting average outward flux value. The simplified skeleton when abstracted as a directed graph is shown to be far less complex than popular skeletal graphs in the literature, such as the shock graph, by a number of graph complexity measures including: number of nodes, number of edges, depth of the graph, number of skeletal points, and the sum of topological signature vector (TSV) values. We conclude the thesis by applying the simplified graph to a view-based object recognition experiment previously arranged for shock graphs. The results suggest that our new simplified graph yields recognition scores very close to those obtained using shock graphs but with a smaller number of nodes, edges, and skeletal points.  }
+\SetAbstractEnText{ This thesis uses a frame fitting method developed in \cite{piuzephd} to describe the fiber geometry of mammal hearts. Extending previous work, we analyze on a quantitative and qualitative approach the extra knowledge that this geometrical analysis can give us on infarcted hearts. Those hearts, right after the infarct, see the infarct region get filled with collagen and significantly lose contractile efficiency as many fibers that were involved in the contraction during the beat cycle are dead from the infarct. General knowledge from ADC and FA map analysis lack in the field of showing how some surviving fibers can persist in the infarct region and how the reconstruction process can lead to a persistence of the contractile function although it is greatly hindered by the geometrical reorganization and the decreased connectivity between regions remote from the infarct and potential surviving fibers in the infarct region. Our connection form parameter calculation and frame fitting error plots allow us to have an interesting visualization of regions mostly filled with collagen within the infarct region, as well as regions where very interestingly some fiber structure still shows up and demonstrate contractile potential after infarct, and how this new organization appears to be. We conclude that this approach could be a very interesting way to understand the process of reconstruction through which the heart goes after infarct and how to understand the new geometrical structure and its relation to the unfortunately frequent secondary effect: tachycardia. We suggest the possibility to perform more analysis of these kinds and especially on more time frames as our analysis is only focused on pig hearts 6 weeks after infarcts, as we did not have cases that followed the evolution before this 6 weeks mark and later on.}
 \AbstractEn%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

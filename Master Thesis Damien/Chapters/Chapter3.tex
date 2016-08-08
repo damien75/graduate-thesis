@@ -11,7 +11,7 @@ Each porcine heart studied in this thesis were freshly excised, suspended in a p
     \item $TE = 35$ ms
     \item $TR = 700$ ms
     \item echo train length $=2$
-    \item $b = 0$ for the unweighted MR images. As a reminder, the b factor is explained in \ref{dw_imaging}
+    \item $b = 0$ for the unweighted MR images. As a reminder, the b factor is explained in Section \ref{dw_imaging}
     \item $b = 500 $ s/$\text{mm}^2$ for the images where the 7 diffusion gradients were applied
     \item $256 \times 256$ k-space
     \item Field of View $FOV = 10-16$ cm
@@ -26,13 +26,14 @@ From each heart, select samples containing an infarct were cut to align with the
     \label{fig:histology_pig_4}
 \end{figure}
 
-One of the difficulties that remains is to try and find a good correspondence between the slices from the histology and the ones that were obtained from the imaging that occured before the histopathology was performed.  \ref{fig:histology_pig_4} shows a histology image of a slide from an infarcted heart, with intact myocytes in the normal tissue and altered tissue microstructure in the infarcted zone. As depicted by the Masson Trichrome stain, the ischemic border zone (BZ) had collagen fibrils interdigitated between viable myocytes. In the dense scar area, necrotic myocytes were completely replaced by mature fibrosis (the final product of collagen degradation), resulting in the loss of myocardial anisotropy.
+One of the difficulties that remains is to try and find a good correspondence between the slices from the histology and the ones that were obtained from the imaging that occured before the histopathology was performed. Fig. \ref{fig:histology_pig_4} shows a histology image of a slide from an infarcted heart, with intact myocytes in the normal tissue and altered tissue microstructure in the infarcted zone. As depicted by the Masson Trichrome stain, the ischemic border zone (BZ) had collagen fibrils interdigitated between viable myocytes. In the dense scar area, necrotic myocytes were completely replaced by mature fibrosis (the final product of collagen degradation), resulting in the loss of myocardial anisotropy.
 
 \section{Source of input data}
 
 The data we have been using are DT-MRI of porcine hearts, both healthy for comparison and infarcted. We have had access to 10 hearts including 2 healthy. For every infarcted heart, the imaging process took place 6 weeks after infarct and histology was done after that for some of the cases - as it is an expensive process - which allows us to compare our observations to the ground truth. Here is an overview of the data we had access to and its usability:
 
-\begin{center}
+\begin{table}
+    \centering
     \begin{tabular}{|c | c | c | c|} 
          \hline
          \shortstack{Heart \\ (Acquisition Date)} & Infarcted or Healthy & Region of infarct \\
@@ -58,17 +59,18 @@ The data we have been using are DT-MRI of porcine hearts, both healthy for compa
          28 & Healthy & Too Noisy \\
          \hline
     \end{tabular}
-\end{center}
+    \caption{Description of our available datasets}
+\end{table}
 
 \section{Quality of our data}
 
-For a better and more accurate analysis of our results, we will focus mostly on the best quality data (least noisy) we had access to and fortunately those include one control heart (\#5: \ref{fig:pig25}) and 5 infarcted hearts (\#2: \ref{fig:pig2}, \#4: \ref{fig:pig4}, \#5: \ref{fig:pig5}, \#6: \ref{fig:pig6}, \#7: \ref{fig:pig7}).
+For a better and more accurate analysis of our results, we will focus mostly on the best quality data (least noisy) we had access to and fortunately those include one control heart (\#5: Fig. \ref{fig:pig25}) and 5 infarcted hearts (\#2: Fig. \ref{fig:pig2}, \#4: Fig. \ref{fig:pig4}, \#5: Fig. \ref{fig:pig5}, \#6: Fig. \ref{fig:pig6}, \#7: Fig. \ref{fig:pig7}).
 
 Due to the imaging technology used, and to the fact that a fairly low Tesla intensity was used to acquire this data (1.5T), a good amount of noise is present in the raw data. We have taken advantage of the knowledge on the type of noise (Rician noise) that is present in MRI-acquired data to apply non-local denoising strategies which are a bit expensive in time but can smooth rather efficiently and not by too much the data to be able to have a better readability of the fiber orientation without oversmoothing. This prevents this strategy from smoothing even regions where the data is chaotic due to the infarct or proximity to the boundary and not only because of noise issues from acquisition. A fine tuning of the smoothing strategy allowed us to get good quality datasets without removing relevant information in the regions of interest around the infarcts.
 
 \section{Usage of MedInria software to read the DICOMs}
 
-We took the advantage of the MedInria tool to load the DICOM images, process the data through the Rician denoising method and finally use their Diffusion Tensor Imaging tool to compute the value of the tensor matrix \ref{diffusion_tensor_matrix} at each voxel location in the heart.
+We took the advantage of the MedInria tool to load the DICOM images, process the data through the Rician denoising method and finally use their Diffusion Tensor Imaging tool to compute the value of the tensor matrix (detailed in Section \ref{diffusion_tensor_matrix}) at each voxel location in the heart.
 
 From the tensor matrices at every location, we were easily able to compute the fiber orientation at every location with a potential flip in the sense of the vector. Cylindrical consistency was used to enforce a consistent sense throughout the heart.
 

@@ -4,14 +4,14 @@
 
 Magnetic Resonance Imaging (MRI) is the imaging method that was used to acquire the data on which our results are based. It is non-invasive and especially adapted to soft-tissues. \cite{bakermans2008} We will explain briefly how it works and what information it gives us.
 
-\subsection{Physics of MRI}
+\subsection{Physics of nucleus magnetic moment}
 
-Magnetic Resonance acquisitions rely on the physical properties of the body, and more specifically the most abundant nucleus which is hydrogen (H). Indeed water molecules ($H_2O$, therefore 2 nucleus of hydrogen in each molecule) represent more than 60\% of the entire body composition. This hydrogen nucleus H consists of 1 proton and 1 electron (which is not important in this case) of opposite electrical charge. The proton spins around itself and therefore creates a magnetic moment which makes the nucleus behave like a magnet from the outside world.
+Magnetic Resonance acquisitions rely on the physical properties of the body, and more specifically the most abundant nucleus which is hydrogen (H). Indeed water molecules ($H_2O$, therefore 2 nucleus of hydrogen in each molecule) represent more than 60\% of the entire body composition. This hydrogen nucleus H consists of 1 proton and 1 electron of opposite electrical charge. The proton spins around itself and therefore creates a magnetic moment which makes the nucleus behave like a magnet to the outside world.
 \begin{figure}
     \centering
     \begin{subfigure}{.28\textwidth}
-        \includegraphics[width=\textwidth]{figures/hydrogen_magnet}
-        \caption{The hydrogen proton behaves like a magnetic dipole}
+        \includegraphics[width=\textwidth]{figures/spin_cm}
+        \caption{The hydrogen proton behaves like a magnetic dipole - Adapted from \cite{dipole}}
         \label{fig:hydrogen_magnet}
     \end{subfigure}
     \hfill
@@ -24,9 +24,9 @@ Magnetic Resonance acquisitions rely on the physical properties of the body, and
     \label{fig:hydrogen}
 \end{figure}
 
-Applying an external magnetic field $\mathbf{B_0}$ leads to a precession around the direction of $\mathbf{B_0}$ of the nuclear magnetic moment of the nucleus. Its magnetic moment will have a characteristic Larmor frequency $\omega_0$. All the magnetic moments of the nuclei in a specific region will average out to a net magnetization vector $\mathbf{M_0}$ aligned with $\mathbf{B_0}$. Though it is important to note that all protons will have a different phase and that the precession is asynchronous between all protons, as shown in \ref{fig:larmor_precession}.
+Applying an external magnetic field $\mathbf{B_0}$ leads to a precession around the direction of $\mathbf{B_0}$ of the nuclear magnetic moment of the nucleus. Its magnetic moment will have a characteristic Larmor frequency $\omega_0$. All the magnetic moments of the nuclei in a specific region will average out to a net magnetization vector $\mathbf{M_0}$ aligned with $\mathbf{B_0}$. However, it is important to note that all protons will have a different phase and that the precession is asynchronous between all protons, as shown in \ref{fig:larmor_precession}.
 
-Then the idea is to apply a secondary and much less intense magnetic field $\mathbf{B_1}$, with $||\mathbf{B_1}|| \simeq 10^{-6}||\mathbf{B_0}||$ in a direction in the plane orthogonal to the direction of $\mathbf{B_0}$, rotating around the direction of $\mathbf{B_0}$ with the Larmor frequency $\omega_0$ to bring the nuclei to resonance and out of their equilibrium, ie into an excited state \ref{fig:spin_excitation}. A torque will indeed be applied to the magnetic moment of the nucleus, coming from the Lorentz force: $\tau = \mathbf{M} \times \mathbf{B_1}$ where $\mathbf{M}$ is the magnetic moment of the nucleus. This can be achieved by transmitting radio frequency (RF) pulses. Then all nucleus motion will be synchrone and in phase.
+Then the idea is to apply a secondary and much less intense magnetic field $\mathbf{B_1}$, with $||\mathbf{B_1}|| \simeq 10^{-6}||\mathbf{B_0}||$ in a direction in the plane orthogonal to the direction of $\mathbf{B_0}$, rotating around the direction of $\mathbf{B_0}$ with the Larmor frequency $\omega_0$ to bring the nuclei to resonance and out of their equilibrium, ie into an excited state, as shown in Fig. \ref{fig:spin_excitation}. A torque will indeed be applied to the magnetic moment of the nucleus, coming from the Lorentz force: $\tau = \mathbf{M} \times \mathbf{B_1}$ where $\mathbf{M}$ is the magnetic moment of the nucleus. This can be achieved by transmitting radio frequency (RF) pulses. Then the motion of all nucleii will be synchronized and will be in phase.
 
 \begin{figure}
     \centering
@@ -35,13 +35,11 @@ Then the idea is to apply a secondary and much less intense magnetic field $\mat
     \label{fig:spin_excitation}
 \end{figure}
 
-Once the impulse stops, the protons will go back to non-coordinated state by leaving their excited state and in that process emitting another magnetic signal (weak compared to $\mathbf{B_0}$) that will be analyzed and specific to each proton. This information will be used to understand the distribution of the orientation of the magnetic moments in the environment.
+Once the impulse stops, the protons will return to their non-excited states and in that process will emit another magnetic signal (weak compared to $\mathbf{B_0}$) that will be analyzed, since it is specific to each proton. This information will be used to understand the distribution of the orientations of the magnetic moments in the environment.
 
-Indeed, the motion of water molecule is constrained by its environment (tissue, nerves...), which is why the measurement of this anisotropic diffusion reveals structural properties of the tissue we are interested in.
+\subsection{Using Magnetic Resonance for Imaging}
 
-\subsection{At the service of Imaging}
-
-Once the nuclei are in its excited state, its relaxation \ref{fig:spin_relaxation} and the outcome magnetization vector in the $(x, y)$ plane $\mathbf{M_{x, y}}$ induces a current recorded by a RF receiving coil.
+Once a nucleus is in its excited state, its relaxation as illustrated in Fig. \ref{fig:spin_relaxation} and the outcome magnetization vector in the $(x, y)$ plane $\mathbf{M_{x, y}}$ induces a current recorded by a RF receiving coil.
 \begin{figure}
     \centering
     \includegraphics[width=.5\textwidth]{figures/spin_relaxation}
@@ -49,25 +47,27 @@ Once the nuclei are in its excited state, its relaxation \ref{fig:spin_relaxatio
     \label{fig:spin_relaxation}
 \end{figure}
 
-This is the signal that is measured in a MR experiment and that will be used to acquire the data.
+This is the signal that is measured in a MR experiment and will be used to acquire the data.
 
-For acquisitions in 2D or 3D there are gradient applied to the RF pulse depending on the location, so that the receiving coil can differentiate more easily depending on this modulation. Typically in 2D for a slice they use frequency and phase encoding for the 2 degrees of freedom. In 3D slice selection is accomplished via a linear magnetic gradient, so that the main exterior magnetic field $\mathbf{B_0}(z)$ is different for each slice and leads to different Larmor values for each value of $z$.
+For acquisitions in 2D or 3D, gradients are applied to the RF pulse(so that the excitation of molecules is characteristic to a location. As a result, the receiving coil can differentiate the localization of the signal more easily depending on this modulation. Typically in 2D frequency and phase encoding is used for the 2 degrees of freedom. In 3D slice selection is accomplished via a linear magnetic gradient, so that the main exterior magnetic field $\mathbf{B_0}(z)$ is different for each slice and leads to different Larmor values for each value of $z$.
 
-In our case all MRI are acquired ex-vivo, which means that the acquisition process is more simple as the subject is perfectly still and several acquisitions can be performed without having to worry about the subject's motion. More advanced techniques are invoked such as FLASH imaging to solve these extra requirements.
+In our case all MRI are acquired ex-vivo, which means that the acquisition process is more simple as the subject is perfectly still and several acquisitions can be performed without having to worry about the subject's motion. In the presence of subject motion more elaborate methods have to be applied like FLASH imaging.
+
+Standard MRI is based mainly on the specific relaxation properties of water molecules, and this allows the physician to get images that represent efficiently the different types of tissues depending on their concentration in water molecules - highest in water and fat specifically. In order to focus on the tissue organization Diffusion MRI takes its place in giving out local characteristics of molecular diffusion. This time 2 pulses are applied and the motion of water molecules between these 2 sequences will be exhibited.
 
 \section{Diffusion Tensor Imaging}
 
-Magnetic resonance diffusion tensor imaging (DTI) is a method based on MRI and the diffusion mechanism of water molecules to assess the direction of fibers from the anisotropic property of the diffusion of these molecules in a structure that contains boundaries.
+Magnetic resonance diffusion tensor imaging (DTI) is a method based on MRI and the diffusion mechanism of water molecules to assess the direction of fibers from the anisotropic property of the diffusion of these molecules in an oriented or elongated structure.
 
 \subsection{Physical diffusion property of molecules}
 
 In general the DTI signal is based on the proton of the hydrogen nucleus present in water molecules.
 
-In a non-restrictive volume, the motion of molecules also called Brownian motion has a Gaussian distribution at equilibrium that is linked to the temperature of the environment and other properties of this environment. This Gaussian distribution will be deviated in the presence of physical barriers that will decrease the diffusivity. Indeed molecules' motion will be hindered in the direction perpendicular to the obstacles. When barriers are present the diffusion will change from isotropic to anisotropic. If we look at a free water molecule, its diffusion would be in the shape of a sphere whereas with boundaries the diffusion of the same water molecule would be more of an ellipsoid with principal direction orthogonal to the boundary.
+In a non-restrictive volume, the motion of molecules is Brownian and has a Gaussian distribution at equilibrium that is linked to the temperature of the environment and other properties. This Gaussian distribution will be affected by the presence of physical barriers that will decrease the diffusivity. Molecular motion will in fact be hindered in the direction perpendicular to the obstacles. When barriers are present the diffusion will change from isotropic to anisotropic. If we look at a free water molecule, its diffusion would have the shape of a sphere whereas with boundaries in the medium the diffusion of the same water molecule would be more of an ellipsoid with principal direction orthogonal to the boundaries.
 
-\subsection{Applied to diffusion weighted imaging} \label{dw_imaging}
+\subsection{Diffusion weighted imaging} \label{dw_imaging}
 
-Two short and intense successive pulsed field gradients (PFGs) are applied to the region of interest. The first makes protons have a precession phase proportional to their position along the direction of the gradient. Then a second one is applied with the exact opposite direction so that molecules that didn't move will have a precession phase null whereas those that moved will have a precession phase proportional to their motion in the direction of the PFG. Here we talk about single water molecules but in reality we are considering distribution of water molecules, and for unbounded water molecules the distribution will be centered around a null motion whereas bounded ones will have a motion distribution centered around the direction orthogonal to the main boundary.
+Two short and intense successive pulsed field gradients (PFGs) are applied to the region of interest. The first makes protons have a precession phase proportional to their position along the direction of the gradient. Then a second one is applied with the exact opposite direction so that molecules that didn't move will have a null precession phase whereas those that moved will have a precession phase proportional to their motion in the direction of the PFG. Here we refer single water molecules but in reality we are considering a distribution of water molecules. For unbounded water molecules the distribution will be centered around a null motion whereas water molecules bounded by a rectangular container for instance will have a motion distribution centered around the direction of the longest vertex.
 \begin{figure}
     \centering
     \includegraphics[width=.5\textwidth]{figures/pgse}
@@ -75,26 +75,23 @@ Two short and intense successive pulsed field gradients (PFGs) are applied to th
     \label{fig:pgse}
 \end{figure}
 
-The acquisition sequence, also called Pulse Gradient Spin Echo (PGSE) sequence, can be described as follows: \cite{assemlal2011recent}
+The acquisition sequence, also called a Pulse Gradient Spin Echo (PGSE) sequence, can be described as follows: \cite{assemlal2011recent}
 \begin{enumerate}
     \item A first PFG is applied in a direction orthogonal to the main magnetic field $\mathbf{B_0}$ for $t \in [0, \delta]$.\\
-    This will have the effect to flip the nuclear spins in the direction of the impulse
+    This will have the effect of flipping the nuclear spins in the direction of the impulse
     \item Once the impulse is over, the magnetic moment of the nuclei will start dephasing as they will start rotating around the direction of $\mathbf{B_0}$, each of them with their specific frequency related to the strength of the magnetic field at their specific location
-    \item After a diffusion time $t = \Delta$, another PFG is applied and this time with a direction opposite to the first impulse for $t \in [\Delta, \Delta + \delta]$, which will refocus the spin phases
-    \item Finally at the echo time $t = TE$, the diffusion signal is received by the scanner coil with a loss proportional to the displacement of water molecule during this process. It is the information given by the displacement that will give us useful insight regarding the micro structure of the studied environment.
+    \item After a diffusion time $t = \Delta$, another PFG is applied but this time with a direction opposite to the first impulse for $t \in [\Delta, \Delta + \delta]$, which will refocus the spin phases
+    \item Finally at the echo time $t = TE$, the diffusion signal is received by the scanner coil with a loss proportional to the displacement of water molecules during this process. It is the information given by the displacement that is related to the micro structure of the studied environment.
 \end{enumerate}
 
-The equation of Nuclear Magnetic Resonance (NMR) was given by Stejskal and Tanner in 1965: it quantifies the decrease in signal intensity and relates it with the apparent diffusion coefficient $\mathbf{D}$.
-
-Let $\mathbf{G}(t) = \Big(H\big(t - t_1\big) - H\big(t - (t_1 + \delta)\big)\Big)\mathbf{u} + \Big(H\big(t - t_2\big) - H\big(t - (t_2 + \delta)\big)\Big) \mathbf{v}$
-
-where $\mathbf{u}, \mathbf{v}$ are unit vectors in the direction of the applied gradients, and $H(t)$ the Heaviside function at a given time $t$. Basically this function is the exact mathematical description of the PGSE sequence. Then we get the following Stejskal and Tanner equation:
+The equation of Nuclear Magnetic Resonance (NMR) was given by Stejskal and Tanner in 1965: it quantifies the decrease in signal intensity and relates this to the apparent diffusion coefficient $\mathbf{D}$.\\
+Let $\mathbf{G}(t) = \Big(H\big(t - t_1\big) - H\big(t - (t_1 + \delta)\big)\Big)\mathbf{u} + \Big(H\big(t - t_2\big) - H\big(t - (t_2 + \delta)\big)\Big) \mathbf{v}$\\
+where $\mathbf{u}, \mathbf{v}$ are unit vectors in the direction of the applied gradients, and $H(t)$ the Heaviside function at a given time $t$. This function is in fact the mathematical description of the PGSE sequence. Then we get the following Stejskal and Tanner equation \cite{Stejskaltanner}:
 
 \begin{equation} \label{eq:tanner}
 \frac{S(TE)}{S_0} = \exp\Big({-\gamma^2G^2\delta^2(\Delta - \frac{\delta}{3})\mathbf{G}^T\mathbf{D}\mathbf{G}\Big)} = \exp (-b \times \mathbf{D})
 \end{equation}
-
-with the following:
+where:
 
 \begin{itemize}
     \item $\gamma$: gyromagnetic ratio, constant specific to each molecule
@@ -102,7 +99,7 @@ with the following:
     \item $\delta$: duration of the pulse
     \item $\Delta$: time between 2 pulses
     \item $\mathbf{D}$: apparent diffusion coefficient
-    \item $b$ factor suggested by LeBihan: $b = \gamma^2G^2\delta^2(\Delta - \frac{\delta}{3})||\mathbf{G}||^2$
+    \item $b$ factor suggested by LeBihan \cite{lebihan1985imagerie}: $b = \gamma^2G^2\delta^2(\Delta - \frac{\delta}{3})||\mathbf{G}||^2$
 \end{itemize}
 
 \subsection{To get a diffusion tensor matrix} \label{diffusion_tensor_matrix}
@@ -115,12 +112,11 @@ Diffusion anisotropy can be described mathematically by a 3x3 diffusion tensor:
     D_{zx} & D_{zy} & D_{zz}
     \end{pmatrix}
 \end{equation}
-
 with $D_{ij}$ the apparent diffusion coefficient (ADC) in direction $(i, j)$. In an environment dominated by water molecules, principles of thermodynamics dictate that $\mathbb{D}$ is symmetric, which means that $D_{ij} = D_{ji}$.
 
 In conclusion we need at least 6 independent gradient directions to determine all 6 degrees of freedom in this matrix. In practice 7 directions are used to get more accurate results, along with a non-weighted measurement for normalization.
 
-The values that we analyze most frequently are ADC and fracional anisotropy (FA):
+The values that we analyze most frequently are ADC and fracional anisotropy (FA). The ADC is an interesting measure as it can show difference in average diffusion values from one region to another - it was particularly adopted to assess the severity of injury in adult stroke patients. It has been challenged recently as it is extremely sensitive to tissue microstructure. As for the FA, it is a very interesting measurement that reflects fiber density and diameter.
 \begin{equation}
     ADC = \frac{tr{\mathbb{D}}}{3} = \frac{\lambda_1 + \lambda_2 + \lambda_3}{3}
 \end{equation}
@@ -130,15 +126,15 @@ The values that we analyze most frequently are ADC and fracional anisotropy (FA)
 
 \section{Heart fiber geometry}
 
-From the 1970s, papers have shown how myofibers in the left ventricule (LV) are aligned in a way that they form helical curves \cite{savadjiev2012heart}. This alignment has proved to be optimal for its mechanical function. Heart fibers stay locally packed together and almost parallel to each other, although they are bundled into a special surface: a generalized helicoid \cite{blair1978generalization}. This is a minimal surface that maintains this property through the whole beat cycle. The bundle of myofibers in generalized helicoids is their characteristic orientation through the heart wall.
+From the 1970s, papers have shown how myofibers in the left ventricle (LV) are aligned in a way that they form helical curves \cite{savadjiev2012heart}. This alignment has proved to be optimal for its mechanical function. Heart fibers stay locally packed together and almost parallel to each other, although they are bundled into a special surface: a generalized helicoid \cite{blair1978generalization}. This is a minimal surface that maintains this property through the whole beat cycle. The bundle of myofibers in generalized helicoids is their characteristic orientation through the heart wall.
 
 \subsection{The Generalized Helicoid Model (GHM)}
 
-We will introduce a local frame field $\mathbf{f}_1,\mathbf{f}_2,\mathbf{f}_3 : \mathbb{R}^3 \to \mathbb{R}^3$ that will allow us to describre more easily the GHM. In this description,
+We will introduce a local frame field $\mathbf{f}_1,\mathbf{f}_2,\mathbf{f}_3 : \mathbb{R}^3 \to \mathbb{R}^3$ that will allow us to describre more easily the GHM. In this description, we follow the same local frame field definition as chosen in previous publications \cite{pami2015, savadjiev2012heart}:
 \begin{itemize}
-    \item $\mathbf{f}_1$: local orientation of the fiber
-    \item $\mathbf{f}_3$: local heart wall normal
-    \item $\mathbf{f}_2 = \mathbf{f}_3 \times \mathbf{f}_1$: cross product of the other 2 to get a right-handed orthogonal coordinate frame field
+    \item $\mathbf{f}_1$ is the local orientation of the fiber
+    \item $\mathbf{f}_3$ is the local heart wall normal
+    \item $\mathbf{f}_2 = \frac{\mathbf{f}_3 \times \mathbf{f}_1}{||\mathbf{f}_3 \times \mathbf{f}_1||}$: to get a right-handed orthogonal coordinate frame field
 \end{itemize}
 
 \begin{figure}
@@ -155,12 +151,14 @@ In the GHM model the fiber orientation is expressed at each point $(x, y, z) \in
 where $\theta$ is the angle $\angle (\overrightarrow{x}, \overrightarrow{y})$
 \begin{itemize}
     \item $K_T$ causes bending in the tangent direction to the fiber
-    \item $K_N$ makes fibers fan out, away from each other, in the $\mathbf{f}_2$ direction
-    \item $K_B$ copies rotated versions of the fiber in planes parallel to the original $(x, y)$ plane, ie in the direction orthogonal to the heart wall
+    \item $K_N$ makes fibers fan out, away from each other, or towards each other, depending on its sign, in the $\mathbf{f}_2$ direction
+    \item $K_B$ copies rotated versions of the fiber in planes parallel to the original $(x, y)$ plane, i.e. in the direction orthogonal to the heart wall
 \end{itemize}
 In general those values describe the amount of change in fiber orientation when going in each of the direction: tangential, orthogonal and out of plane.
 
-Analyses of these parameters on different species has shown on the entire heart volume \cite{savadjiev2012heart} that the GHM fits with small values of $K_T$ and $K_N$ and high values of $K_B$. This validates the helicoidal model approach and the characteristic of the helix angle in the heart myofiber structure.
+Analyses of these parameters on different species has shown on the entire heart volume \cite{savadjiev2012heart} that the GHM fits with small values of $K_T$ and $K_N$ and high values of $K_B$. This validates the helicoidal model approach and the characteristic of the helix angle in heart myofiber structure.
+
+From this analysis of helix angle using a model based description (GHM), by that we mean a fixed reference frame to measure parameters we are going to another approach that is model free. The method of moving frames we will introduce in the next section allows us to have a reference frame that can be redefined for each fiber we are focusing on, and therefore is free of this constraint of a general model based description.
 
 \subsection{The Maurer-Cartan form}
 
@@ -170,12 +168,9 @@ The Maurer-Cartan form operator has proved useful in measuring the differential 
 
 We utilize the framework described in \cite{de1990ventricular} to describe the geometry of fiber orientation in the heart wall via rotations of a frame field that is fit to the diffusion MRI data. 
 
-Let a point $\mathbf{x} = \sum_i{x_i\mathbf{e_i}} \in \mathbb{R}^3$ be expressed in terms of $(\mathbf{e_1}, \mathbf{e_2}, \mathbf{e_3})$, the natural basis for $\mathbb{R}^3$. 
-
-We define a right-handed orthonormal frame field $\mathbf{f}_1,\mathbf{f}_2,\mathbf{f}_3 : \mathbb{R}^3 \to \mathbb{R}^3$.
-
-Each frame axis can be expressed by the rigid rotation $f_i = \sum_i{a_{i,j}\mathbf{e}_j}$, where $\mathbf{A} = {a_{i,j}} \in \mathbb{R}^{3 \times 3}$ is a differentiable attitude matrix such that $\mathbf{A}^{-1} = \mathbf{A}^T$.
-
+Let a point $\mathbf{x} = \sum_i{x_i\mathbf{e_i}} \in \mathbb{R}^3$ be expressed in terms of $(\mathbf{e_1}, \mathbf{e_2}, \mathbf{e_3})$, the natural basis for $\mathbb{R}^3$.\\
+We define a right-handed orthonormal frame field $\mathbf{f}_1,\mathbf{f}_2,\mathbf{f}_3 : \mathbb{R}^3 \to \mathbb{R}^3$.\\
+Each frame axis can be expressed by the rigid rotation $f_i = \sum_i{a_{i,j}\mathbf{e}_j}$, where $\mathbf{A} = {a_{i,j}} \in \mathbb{R}^{3 \times 3}$ is a differentiable attitude matrix such that $\mathbf{A}^{-1} = \mathbf{A}^T$.\\
 Treating $\mathbf{f}_i$ and $\mathbf{e}_j$ as symbols, we can write:
 \begin{equation}
 \begin{bmatrix}
@@ -188,7 +183,6 @@ Treating $\mathbf{f}_i$ and $\mathbf{e}_j$ as symbols, we can write:
     \mathbf{e}_3
 \end{bmatrix}
 \end{equation}
-
 Since each $\mathbf{e}_i$ is constant, the differential geometry of the frame field is completely characterized by $\mathbf{A}$. Taking the exterior derivative on both sides, we have:
 
 \begin{align} \label{eq:1}
@@ -208,10 +202,8 @@ Since each $\mathbf{e}_i$ is constant, the differential geometry of the frame fi
                 \mathbf{f}_3
             \end{bmatrix}
 \end{align}
-
-where $\partial$ denotes the exterior derivative, and $\mathbf{C} = (\partial \mathbf{A}) \mathbf{A}^{-1} = (c_{i,j}) \in \mathbb{R}^{3 \times 3}$ is the Maurer-Cartan matrix of connection forms $(c_{i,j})$.
-
-Writing $\mathbf{f}_i$ as symbols, \ref{eq:1} is to be understood as $\partial \mathbf{f}_i = \sum_j{c_{i,j}\mathbf{f}_j}$.
+where $\partial$ denotes the exterior derivative, and $\mathbf{C} = (\partial \mathbf{A}) \mathbf{A}^{-1} = (c_{i,j}) \in \mathbb{R}^{3 \times 3}$ is the Maurer-Cartan matrix of connection forms $(c_{i,j})$.\\
+Writing $\mathbf{f}_i$ as symbols, Eq. \ref{eq:1} is to be understood as $\partial \mathbf{f}_i = \sum_j{c_{i,j}\mathbf{f}_j}$.
 
 The Maurer-Cartan matrix is skew symmetric with zeros as diagonal entries so there are at most 3 independent, non-zero 1-forms: $c_{1,2}$, $c_{1,3}$, and $c_{2,3}$.
 
@@ -222,20 +214,16 @@ The Maurer-Cartan matrix is skew symmetric with zeros as diagonal entries so the
     -c_{1,3} & -c_{2,3} & 0
     \end{pmatrix}
 \end{equation}
-
 1-forms operate on tangent vectors through contraction, written as $\partial \omega \langle \boldsymbol{\upsilon} \rangle \in \mathbb{R}$ for a general 1-form $\partial \omega = \sum_i{\omega_i \mathbf{e_i}}$ and tangent vector $\boldsymbol{\upsilon} \in \mathbb{R}^3$, which yields:
 
 \begin{align}
     \partial \omega \langle \boldsymbol{\upsilon} \rangle &= \sum_i{\omega_i \partial \mathbf{e_i}} \big{\langle} \sum_j{\upsilon_j \mathbf{e_j}} \big{\rangle} \\
     &= \sum_i{\omega_i \upsilon_i}
 \end{align}
-
 since
-
 \begin{equation}
     \partial \mathbf{e}_i \langle \mathbf{e}_j \rangle = \delta_{i,j}
 \end{equation}
-
 where $\delta_{i,j}$ is the Kronecker delta.
 It turns out that the space of linear models for smoothly varying frame fields is parametrized by the 1-forms $c_{i,j}$. Since only 3 unique non-zero combinations of $c_{i,j}$ are possible, there are in total 9 connections $c_{i,j,k}$ that fully characterize the local frame field geometry.
 
@@ -248,8 +236,7 @@ It turns out that the space of linear models for smoothly varying frame fields i
     \label{fig:fibers_neighborhood3d}
 \end{figure}
 
-Finding out the correct values for the connection form parameters $c_{i,j,k}(\mathbf{x}) \forall \mathbf{x} \in \mathbb{R}^3$ is done by energy minimization within a neighborhood $\Omega$ \ref{fig:fibers_neighborhood3d}. This approach makes sense as the GHM is still dependent on the location in the heart, indeed the rate of turning will not be the same close to the apex for instance or where the heart wall is thinner.
-
+Finding out the correct values for the connection form parameters $c_{i,j,k}(\mathbf{x}), \forall \mathbf{x} \in \mathbb{R}^3$ is done by energy minimization within a neighborhood $\Omega$, as we can see in Fig. \ref{fig:fibers_neighborhood3d}. This approach makes sense as the GHM is still dependent on the location in the heart, indeed the rate of turning will not be the same close to the apex for instance or where the heart wall is thinner.\\
 Therefore the optimal parameters are defined as follows:
 \begin{align*}
     c^*_{i,j,k}(\mathbf{x}) &= \text{argmin}_{c_{i,j,k}} \frac{1}{\Omega} \sum_{\mathbf{v} \in \Omega} \sum_{i = 1}^3 \epsilon_i(\mathbf{x} + \mathbf{v}) \\
@@ -267,15 +254,15 @@ The optimization strategy can be one of the standard well-known algorithms for t
 
 The heart is made of elongated muscle cells called cardiomyocytes that are organized within a collagen matrix. The macroscopic shape is one of a truncated ellipsoid, while on a microscopic scale myocytes are stacked and form myofibers.
 
-Work on histology has shown how cardiac myofibers wrap around the ventricules in helical curves. The ubiquitous analysis of myofiber geometry states out that the helix angle - $\theta$ or $c_{1,2,3}$ in previous sections, or the angle $\angle (\overrightarrow{\mathbf{f}^{i}_1}, \overrightarrow{\mathbf{f}^{i+1}_2})$ where $i$ is a tangent plane to the heart wall at this location - varies smoothly \ref{fig:helix_angle} with a total change \ref{fig:total_angle} of around 120° for mammals.
+Work on histology has shown how cardiac myofibers wrap around the ventricles in helical curves. The ubiquitous analysis of myofiber geometry states out that the helix angle - $\theta$ or $c_{1,2,3}$ in previous sections, or the angle $\angle (\overrightarrow{\mathbf{f}^{i}_1}, \overrightarrow{\mathbf{f}^{i+1}_2})$ where $i$ is a tangent plane to the heart wall at this location - varies smoothly in Fig. \ref{fig:helix_angle} with a total change in Fig. \ref{fig:total_angle} of around 120° for mammals.
 \begin{figure}
     \centering
-    \begin{subfigure}[t]{.48\textwidth}
+    \begin{subfigure}[t]{.98\textwidth}
         \includegraphics[width=\textwidth]{figures/total_angle}
         \caption[b]{Visualization of the helix angle with a transmural point of view}
         \label{fig:total_angle}
     \end{subfigure}
-    \begin{subfigure}[t]{.48\textwidth}
+    \begin{subfigure}[t]{.98\textwidth}
         \includegraphics[width=\textwidth]{figures/helix_angle}
         \caption{The helix angle varies smoothly from one tangent plane to the other from the epicardium to the endocardium}
         \label{fig:helix_angle}
@@ -307,7 +294,7 @@ After an infarct occurs, a remodeling happens in the heart, which means that the
 \end{enumerate}
 One of the first consequences of CR is a decrease of the wall thickness, which leads immediately to an increased volume of the Left Ventricule (LV). Another direct effet is cardiac heart hypertrophy, with a multiplication of nonmuscle cells (fibroblasts and endothelial cells) in the place of former muscle myocytes. A study on rats \cite{mccormick1994regional} showed that the hypertrophy lead to a 25\% increase of the heart mass 13 weeks after infarct.
 
-Myocardial fibrosis is one of the major sign of malign issues in the CR process, which can lead to death by cardiac failure (CF) or severe arrhythmias.
+Myocardial fibrosis is one of the major sign of malignancy in the CR process, which can lead to death by cardiac failure (CF) or severe arrhythmias.
 
 \subsection{Effects of wall stress on tissue composition and geometry}
 

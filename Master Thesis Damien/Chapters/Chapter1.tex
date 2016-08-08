@@ -6,10 +6,22 @@ As the imaging techniques get better \cite{shaw2010cardiovascular}, the analysis
 
 Although the variety of imaging modalities is very wide and information can be convened from these multiple sources, the most valuable for a clinician will be a fast processed and easy to understand and visualize data that we hope our imaging tools of fibers can provide. The visualization of those in 3D is key since they are the pillar of the mechanical behavior of the heart \cite{hooks2002cardiac}.
 
-The core organization of these fibers can be altered by various common pathologies and lead to a deficient contraction of the heart \cite{beg2004computational}.
+The core organization of these fibers can be altered by various common pathologies, like rheumatic heart disease or inflammatory heart disease or Dilated, Hypertrophic, Restrictive cardiomyopathies and lead to a deficient contraction of the heart \cite{kerwin2000ventricular, beg2004computational}.
 
 Numerous former histological studies have shown how fibers in a healthy heart are smoothly wrapped around it and that the variation of the helix angle (measure of fiber orientation) is a common descriptor of local fiber geometry \cite{geerts2002characterization}. Computational aided visualization of the disorganization that can occur in the heart structure could be helpful for modern treatments that feature tissue engineering methods to restore the contractile properties of the heart \cite{caplan2006mesenchymal,laflamme2007cardiomyocytes,laflamme2005regenerating, song2012heart, zimmermann2004engineered}, or in more extreme cases where they proceed with reconstruction, or even ablation of infarcted regions \cite{athanasuleas2004surgical, di2001effects, jones2009coronary, sartipy2005dor}.
 
+In general the most common means to assessing the impact of a heart disease is via echocardiography, computed tomography (CT) and MRI. CT is a good tool to analyze patients with coronary artery diseases as this tool is efficient at revealing different layers in a slice of a body and therefore putting in light foreign objects for instance that could obstruct an artery. Echocardiography, the most often used method to analyze heart disease, can provide numerous useful information about the heart shape and size, the flow of input and output blood but does not provide or very little information on a smaller scale like tissue organization and fiber structure.
+
+Imaging of patient specific models of heart wall fibers has become popular using Diffusion MRI methods and proved a very informative acquisition method for cardiac myofibers and laminar architecture \cite{rademakers1994relation, helm2005measuring, rohmer2007reconstruction}. Despite all this enthusiasm, most work focused on healthy hearts. Although some work has been done on fiber modeling \cite{pami2015, savadjiev2012heart} there are still few methods that provide differential geometric signature of fiber orientation.
+
 \section{Objectives of this Thesis}
 
-In this thesis we start from our knowledge of Maurer-Cartan connection form description of the fibers of the heart \cite{pami2015}. From this basis we try and analyze the possible impacts that an infarct can have on the fiber orientation in the infarct area and areas away from the infarct regions.
+The objective of this thesis is to show how the Maurer-Cartan connection forms approach can be a very accurate descriptor of cardiac myofiber structure and how analyzing the error of fit can be a good and helpful source of information in treating and understanding various heart diseases that affect its geometrical structure and organization.
+
+First the literature review will give an overview of the imaging methods used and how relevant they can be in our case, and what kind of information we can obtain from these technologies. Then we will dive into the current knowledge of heart fiber geometry and how the Maurer-Cartan form can be a very good and handy tool to describe local fiber orientations. Then we will try to understand how infarction can scar a region of the heart that remodels itself from that moment on.
+
+The chapter on the experimental setup will give an overview of the data we were able to test on and how it was obtained, as well as what other knowledge we have to compare our results to.
+
+In our chapter on methodology, we start from our knowledge of Maurer-Cartan connection forms and use this model to get the most accurate description of the fibers of the heart \cite{pami2015} that we can get. Then we explain how our fitting method works to get those parameters from the data and how our error of fit measurements can give insights on the myocardial fiber structure of the heart.
+
+Finally our results are explained and shown in the chapter results and discussion. There we try and analyze the extra information that our fitting method and error of fit measurements were able to give us.

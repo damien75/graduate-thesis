@@ -252,22 +252,19 @@ The optimization strategy can be one of the standard well-known algorithms for t
 
 \subsection{Combining both for a good description of heart fiber geometry}
 
-The heart is made of elongated muscle cells called cardiomyocytes that are organized within a collagen matrix. The macroscopic shape is one of a truncated ellipsoid, while on a microscopic scale myocytes are stacked and form myofibers.
+The heart is made of elongated muscle cells called cardiomyocytes that are organized within a collagen matrix. The macroscopic shape is one of a truncated ellipsoid, while on a microscopic scale myocytes are stacked and form myofibers \cite{streeter1969fiber}.
 
-Work on histology has shown how cardiac myofibers wrap around the ventricles in helical curves. The ubiquitous analysis of myofiber geometry states out that the helix angle - $\theta$ or $c_{1,2,3}$ in previous sections, or the angle $\angle (\overrightarrow{\mathbf{f}^{i}_1}, \overrightarrow{\mathbf{f}^{i+1}_2})$ where $i$ is a tangent plane to the heart wall at this location - varies smoothly in Fig. \ref{fig:helix_angle} with a total change in Fig. \ref{fig:total_angle} of around 120° for mammals.
+Work on histology has shown how cardiac myofibers wrap around the ventricles in helical curves \cite{buckberg2002basic}. The ubiquitous analysis of myofiber geometry states out that the helix angle - $\theta$ or $c_{1,2,3}$ in previous sections, or the angle $\angle (\overrightarrow{\mathbf{f}^{i}_1}, \overrightarrow{\mathbf{f}^{i+1}_2})$ where $i$ is a tangent plane to the heart wall at this location - varies smoothly in Fig. \ref{fig:helix_angle} with a total change in Fig. \ref{fig:total_angle} of around 120° for mammals.
 \begin{figure}
     \centering
-    \begin{subfigure}[t]{.98\textwidth}
-        \includegraphics[width=\textwidth]{figures/total_angle}
-        \caption[b]{Visualization of the helix angle with a transmural point of view}
-        \label{fig:total_angle}
-    \end{subfigure}
-    \begin{subfigure}[t]{.98\textwidth}
-        \includegraphics[width=\textwidth]{figures/helix_angle}
-        \caption{The helix angle varies smoothly from one tangent plane to the other from the epicardium to the endocardium}
-        \label{fig:helix_angle}
-    \end{subfigure}
-    \caption{Helix angle}
+    \includegraphics[width=.78\textwidth]{figures/total_angle}
+    \caption[b]{Visualization of the helix angle with a transmural point of view}
+    \label{fig:total_angle}
+\end{figure}
+\begin{figure}
+    \includegraphics[width=.78\textwidth]{figures/helix_angle}
+    \caption{The helix angle varies smoothly from one tangent plane to the other from the epicardium to the endocardium}
+    \label{fig:helix_angle}
 \end{figure}
 
 Applying this method to the heart can be done by choosing $\mathbf{f}_i$ as described previously in the GHM model. $\mathbf{f}_1$ is easy to set from the DTI data, while $\mathbf{f}_3$ is determined locally by an approximation of the transmural direction at each location using a mask of the studied heart and a euclidian distance computed between the epicardium (outtermost layer of the heart wall) and endocardium (innermost layer) of the heart.
@@ -279,6 +276,8 @@ The Maurer-Cartan connection form approach is a good one to describe the cardiac
     \item $c_{2,3,2}$ represents the long-axis (from one slice to another) curvature
 \end{itemize}
 As a reminder, in general, these coefficients $c_{i,j,k}$ express the rate of turn of the frame vector $\mathbf{f}_i$ towards $\mathbf{f}_j$ when $\mathbf{x}$ moves in the direction $\mathbf{f}_k$.
+
+In previous sections we reviewed MRI and DMRI as they are the technologies involved in the acquisition of our data. Then a review of the GHM and the Maurer-Cartan forms helped us introduce the tools we rely on for the geometric characterization of fiber orientation. In the following section we provide the reader a brief review of infarcts and their effects, as it is the main application area of my thesis. This subject is particularly interesting as not much is yet known about how fibers are remodeled in the presence of infarcts.
 
 \section{Infarcts and their impact on heart fiber geometry}
 

@@ -1,77 +1,64 @@
-% Point out that for the first time in the literature Cartan's moving frame method is used to assess damage in infarcted hearts by looking at the degree to which fiber orientations in a local neighborhood of a voxel are consistent with its 1-form characterization. Point out that this parametric approach also leads to a geometric model for fibers in healthy regions. Point out that regions of high error explain more than 80\% of those regions with high ADC. However, they also include regions near the heart wall (endothilial and epithilial) linings. Talk about the promise of Cartan frame fitting error in the early stages post infart, not just after 4-6 week period which has been our current focus.
+\chapter{Methodology}
 
-\chapter{Experimental Setup}
+Our method uses a combination of different software both opened to university research purposes (MedInria) and developed in the lab for our very specific needs of reproducible experiments with comparable results \cite{piuzephd}. As explained in the previous section the first step is to use MedInria to read the DICOMs and get the tensor matrix presented in Section \ref{diffusion_tensor_matrix} at every voxel, as well as the FA and ADC in reusable Matlab file format.
 
-The data on which our results are based are all porcine hearts that were gratefully provided to us by Mihaela Pop from the Sunnybrooke University.
+\section{Getting fiber directions from the diffusion tensor matrix}
 
-\section{Data acquisition of pig infarcted and healthy hearts}
+Once we have our diffusion tensor matrix $\mathbb{D}$, a simple eigenvector and eigenvalue calculation gives us the eigenvalues $(\lambda_1, \lambda_2, \lambda_3)$ and the corresponding eigenvectors $(\nu_1, \nu_2, \nu_3)$.
+\begin{align}
+    \mathbb{D} &= \begin{pmatrix}
+        D_{xx} & D_{xy} & D_{xz} \\
+        D_{yx} & D_{yy} & D_{yz} \\
+        D_{zx} & D_{zy} & D_{zz}
+        \end{pmatrix} \\
+    &= \mathbb{P}^{-1} \mathbb{\tilde{D}P}
+\end{align}
+where:
+\begin{gather*}
+    \mathbb{\tilde{D}} = \begin{pmatrix}
+        \lambda_1 & 0 & 0 \\
+        0 & \lambda_2 & 0 \\
+        0 & 0 & \lambda_3
+        \end{pmatrix} \\
+    \mathbb{\tilde{D}}\cdot \nu_1 = \lambda_1 \nu_1 \\
+    \mathbb{\tilde{D}}\cdot \nu_2 = \lambda_2 \nu_2 \\
+    \mathbb{\tilde{D}}\cdot \nu_3 = \lambda_3 \nu_3
+\end{gather*}
+The biggest eigenvalue in absolute value will correspond to the fiber direction and sorting those will give us the eigenvector corresponding to the fiber direction. We can also at this point get the FA and ADC values to double check what MedInria gave us.
 
-Each porcine heart studied in this thesis were freshly excised, suspended in a plexiglass phantom filled with fluorinert (to eliminate artifacts) and placed in an MR head coil for ex-vivo imaging. All DW-MR studies were performed on a dedicated 1.5T GE Signa Excite scanner using a custom FSE pulse sequence. They used the following MR parameters: 
-\begin{itemize}
-    \item $TE = 35$ ms
-    \item $TR = 700$ ms
-    \item echo train length $=2$
-    \item $b = 0$ for the unweighted MR images. As a reminder, the b factor is explained in Section \ref{dw_imaging}
-    \item $b = 500 $ s/$\text{mm}^2$ for the images where the 7 diffusion gradients were applied
-    \item $256 \times 256$ k-space
-    \item Field of View $FOV = 10-16$ cm
-    \item Slice Thickness $ = 1.2$ mm, yielding a sub-millimetric voxel size
-\end{itemize}
-From each heart, select samples containing an infarct were cut to align with the short-axis view of the MR images and prepared for histopathology to confirm the collagen deposition in the infarct area.
+\section{Modeling fiber geometry using connection forms}
 
+Connection forms measure the local rotations of the frame axes $\mathbf{f}_1, \mathbf{f}_2, \mathbf{f}_3$. Here we focus on the contraction of the 1-form $c_{1,2}$ on the frame axes $\mathbf{f}_3$ and compare its values in a short axis slice of a pig heart with an infarct - Fig. \ref{fig:c123infarcted} - with those in a short axis slice from a healthy pig heart - Fig. \ref{fig:c123healthy}.
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\textwidth]{figures/Gip4_histology}
-    \caption{Histology of a slice of infarcted heart nb 4}
-    \label{fig:histology_pig_4}
+    \begin{subfigure}[h!]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/pig4_c123_slice_19}
+        \caption{$c_{1,2,3}$ (infarcted)}
+        \label{fig:c123infarcted}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[h!]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/pig25_c123_slice_30}
+        \caption{$c_{1,2,3}$ (healthy)}
+        \label{fig:c123healthy}
+    \end{subfigure}
+    \caption{$c_{1,2,3}$ with range of values in porcine hearts}
+    \label{fig:c123all}
 \end{figure}
 
-One of the difficulties that remains is to try and find a good correspondence between the slices from the histology and the ones that were obtained from the imaging that occured before the histopathology was performed. Fig. \ref{fig:histology_pig_4} shows a histology image of a slide from an infarcted heart, with intact myocytes in the normal tissue and altered tissue microstructure in the infarcted zone. As depicted by the Masson Trichrome stain, the ischemic border zone (BZ) had collagen fibrils interdigitated between viable myocytes. In the dense scar area, necrotic myocytes were completely replaced by mature fibrosis (the final product of collagen degradation), resulting in the loss of myocardial anisotropy.
-
-\section{Source of input data}
-
-The data we have been using are DT-MRI of porcine hearts, both healthy for comparison and infarcted. We have had access to 10 hearts including 2 healthy. For every infarcted heart, the imaging process took place 6 weeks after infarct and histology was done after that for some of the cases - as it is an expensive process - which allows us to compare our observations to the ground truth. Here is an overview of the data we had access to and its usability:
-
-\begin{table}
+On a qualitative approach, looking at the colors and comparing the smoothness of figures \ref{fig:c123infarcted} to the control heart in Fig. \ref{fig:c123healthy}, we can already notice how in the healthy case and in regions remote from the infarct in the infarcted case we have smooth and regular colors which represent a rather constant value of $c_{1,2,3}$. Whereas in the infarct region, it is clear that the values vary a lot more and give a strong impression of a lack of coherence.\\
+A more quantitative approach will be discussed in Section \ref{histogram_section}.
+\begin{figure}
     \centering
-    \begin{tabular}{|c | c | c | c|} 
-         \hline
-         \shortstack{Heart \\ (Acquisition Date)} & Infarcted or Healthy & Region of infarct \\
-         \hline
-         2 & Infarcted & \shortstack{Left Circumflex artery \\ (LCX)} \\ 
-         \hline
-         4 & Infarcted & \shortstack{Left Anterior Descending \\ (LAD)} \\
-         \hline
-         5 & Infarcted & LCX \\
-         \hline
-         6 & Infarcted & LCX \\
-         \hline
-         7 & Infarcted & \shortstack{Rigth Coronary Artery \\ (RCA)} \\ 
-         \hline
-         17 & Infarcted & Bad quality \\
-         \hline
-         18 & Infarcted & Bad quality \\
-         \hline
-         23 & Infarcted & Unreadable \\
-         \hline
-         25 & Healthy & - \\
-         \hline
-         28 & Healthy & Too Noisy \\
-         \hline
-    \end{tabular}
-    \caption{Description of our available datasets}
-\end{table}
+    \includegraphics[width=\textwidth]{figures/pig4_error_of_fit_slice_19}
+    \caption{Error of fit, giving the absolute angle difference between our estimation from the connection forms and the ground truth}
+    \label{fig:error_of_fit}
+\end{figure}
+ 
+Cartan frame field analysis applies to smoothly rotating frame fields. In the presence of infarcts fiber orientation coherence is lost. The connections then fail to explain the orientation of fibers in a local neighborhood and fitting errors using this method go up as we can observe in Fig. \ref{fig:error_of_fit}. This association of frame field fitting error with fiber incoherence is the key insight behind the developments in this thesis.
 
-\section{Quality of our data}
+\section{Cartan Frame Fitting and Error Analysis}
 
-For a better and more accurate analysis of our results, we will focus mostly on the best quality data (least noisy) we had access to and fortunately those include one control heart (\#5: Fig. \ref{fig:pig25}) and 5 infarcted hearts (\#2: Fig. \ref{fig:pig2}, \#4: Fig. \ref{fig:pig4}, \#5: Fig. \ref{fig:pig5}, \#6: Fig. \ref{fig:pig6}, \#7: Fig. \ref{fig:pig7}).
-
-Due to the imaging technology used, and to the fact that a fairly low Tesla intensity was used to acquire this data (1.5T), a good amount of noise is present in the raw data. We have taken advantage of the knowledge on the type of noise (Rician noise) that is present in MRI-acquired data to apply non-local denoising strategies which are a bit expensive in time but can smooth rather efficiently and not by too much the data to be able to have a better readability of the fiber orientation without oversmoothing. This prevents this strategy from smoothing even regions where the data is chaotic due to the infarct or proximity to the boundary and not only because of noise issues from acquisition. A fine tuning of the smoothing strategy allowed us to get good quality datasets without removing relevant information in the regions of interest around the infarcts.
-
-\section{Usage of MedInria software to read the DICOMs}
-
-We took the advantage of the MedInria tool to load the DICOM images, process the data through the Rician denoising method and finally use their Diffusion Tensor Imaging tool to compute the value of the tensor matrix (detailed in Section \ref{diffusion_tensor_matrix}) at each voxel location in the heart.
-
-From the tensor matrices at every location, we were easily able to compute the fiber orientation at every location with a potential flip in the sense of the vector. Cylindrical consistency was used to enforce a consistent sense throughout the heart.
-
-Once we have the fiber orientation at every voxel, we can use our previous work to compute the connection forms and get an approximative appreciation of the quality of the fitting, depending on hyper parameters that have to be fine tuned by mostly on the coherence of the underlying data.
+As explained earlier, at each voxel we use an estimate of the fiber orientation given by the orientation of the first principal eigenvector of a diffusion tensor reconstruction for $\mathbf{f}_1$. We then estimate the heart wall normal as the gradient of the distance function to the boundary of the myocardium and take the component of the normal that is orthogonal to $\mathbf{f}_1$ to be $\mathbf{f}_3$. $\mathbf{f}_2$ is then taken to be their cross product. Our numerical implementation of frame field fitting relies on finding the best estimates of the 9 connection forms at each voxel in the sense of explaining the orientations in its neighborhood. Specifically, using Nelder-Mead optimization, we minimize an energy given by the angle between the measured orientation at each neighbor and that given by rotating the frame field by a particular set of connections, explained in Section \ref{fitting_method}. Once this method converges the error of fit at a voxel is taken to be the average angular error between fiber orientations in a neighborhood and those given by rotating the frame at that voxel using its connection parameters.

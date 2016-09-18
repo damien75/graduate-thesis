@@ -1,10 +1,11 @@
-\chapter{Literature Review}
+\chapter{Literature Review and Experimental Setup}
 
-\section{Cardiac Diffusion MRI}
+\section{Literature Review}
+\subsection{Cardiac Diffusion MRI}
 
-Magnetic Resonance Imaging (MRI) is the imaging method that was used to acquire the data on which our results are based. It is non-invasive and especially adapted to soft-tissues. \cite{bakermans2008} We will explain briefly how it works and what information it gives us.
+Magnetic Resonance Imaging (MRI) is the imaging method that was used to acquire the data on which our results are based. It is non-invasive and is adapted to the analysis of soft-tissues \cite{bakermans2008}. We will explain briefly how it works and what information it gives us.
 
-\subsection{Physics of nucleus magnetic moment}
+\subsubsection{Magnetic Moment of Nuclei}
 
 Magnetic Resonance acquisitions rely on the physical properties of the body, and more specifically the most abundant nucleus which is hydrogen (H). Indeed water molecules ($H_2O$, therefore 2 nucleus of hydrogen in each molecule) represent more than 60\% of the entire body composition. This hydrogen nucleus H consists of 1 proton and 1 electron of opposite electrical charge. The proton spins around itself and therefore creates a magnetic moment which makes the nucleus behave like a magnet to the outside world.
 \begin{figure}
@@ -37,7 +38,7 @@ Then the idea is to apply a secondary and much less intense magnetic field $\mat
 
 Once the impulse stops, the protons will return to their non-excited states and in that process will emit another magnetic signal (weak compared to $\mathbf{B_0}$) that will be analyzed, since it is specific to each proton. This information will be used to understand the distribution of the orientations of the magnetic moments in the environment.
 
-\subsection{Using Magnetic Resonance for Imaging}
+\subsubsection{Using Magnetic Resonance for Imaging}
 
 Once a nucleus is in its excited state, its relaxation as illustrated in Fig. \ref{fig:spin_relaxation} and the outcome magnetization vector in the $(x, y)$ plane $\mathbf{M_{x, y}}$ induces a current recorded by a RF receiving coil.
 \begin{figure}
@@ -55,17 +56,17 @@ In our case all MRI are acquired ex-vivo, which means that the acquisition proce
 
 Standard MRI is based mainly on the specific relaxation properties of water molecules, and this allows the physician to get images that represent efficiently the different types of tissues depending on their concentration in water molecules - highest in water and fat specifically. In order to focus on the tissue organization Diffusion MRI takes its place in giving out local characteristics of molecular diffusion. This time 2 pulses are applied and the motion of water molecules between these 2 sequences will be exhibited.
 
-\section{Diffusion Tensor Imaging}
+\subsection{Diffusion Tensor Imaging}
 
 Magnetic resonance diffusion tensor imaging (DTI) is a method based on MRI and the diffusion mechanism of water molecules to assess the direction of fibers from the anisotropic property of the diffusion of these molecules in an oriented or elongated structure.
 
-\subsection{Physical diffusion property of molecules}
+\subsubsection{Physical diffusion property of molecules}
 
 In general the DTI signal is based on the proton of the hydrogen nucleus present in water molecules.
 
 In a non-restrictive volume, the motion of molecules is Brownian and has a Gaussian distribution at equilibrium that is linked to the temperature of the environment and other properties. This Gaussian distribution will be affected by the presence of physical barriers that will decrease the diffusivity. Molecular motion will in fact be hindered in the direction perpendicular to the obstacles. When barriers are present the diffusion will change from isotropic to anisotropic. If we look at a free water molecule, its diffusion would have the shape of a sphere whereas with boundaries in the medium the diffusion of the same water molecule would be more of an ellipsoid with principal direction orthogonal to the boundaries.
 
-\subsection{Diffusion weighted imaging} \label{dw_imaging}
+\subsubsection{Diffusion weighted imaging} \label{dw_imaging}
 
 Two short and intense successive pulsed field gradients (PFGs) are applied to the region of interest. The first makes protons have a precession phase proportional to their position along the direction of the gradient. Then a second one is applied with the exact opposite direction so that molecules that didn't move will have a null precession phase whereas those that moved will have a precession phase proportional to their motion in the direction of the PFG. Here we refer single water molecules but in reality we are considering a distribution of water molecules. For unbounded water molecules the distribution will be centered around a null motion whereas water molecules bounded by a rectangular container for instance will have a motion distribution centered around the direction of the longest vertex.
 \begin{figure}
@@ -102,7 +103,7 @@ where:
     \item $b$ factor suggested by LeBihan \cite{lebihan1985imagerie}: $b = \gamma^2G^2\delta^2(\Delta - \frac{\delta}{3})||\mathbf{G}||^2$
 \end{itemize}
 
-\subsection{To get a diffusion tensor matrix} \label{diffusion_tensor_matrix}
+\subsubsection{To get a diffusion tensor matrix} \label{diffusion_tensor_matrix}
 
 Diffusion anisotropy can be described mathematically by a 3x3 diffusion tensor:
 \begin{equation}
@@ -124,11 +125,11 @@ The values that we analyze most frequently are ADC and fracional anisotropy (FA)
     FA = \sqrt{\frac{(\lambda_1 - \lambda_2)^2 + (\lambda_2 - \lambda_3)^2 + (\lambda_3 - \lambda_1)^2}{\lambda_1^2 + \lambda_2^2 + \lambda_3^2}}
 \end{equation}
 
-\section{Heart fiber geometry}
+\subsection{Heart fiber geometry}
 
-From the 1970s, papers have shown how myofibers in the left ventricle (LV) are aligned in a way that they form helical curves \cite{savadjiev2012heart}. This alignment has proved to be optimal for its mechanical function. Heart fibers stay locally packed together and almost parallel to each other, although they are bundled into a special surface: a generalized helicoid \cite{blair1978generalization}. This is a minimal surface that maintains this property through the whole beat cycle. The bundle of myofibers in generalized helicoids is their characteristic orientation through the heart wall.
+From the 1970s, papers have shown how myofibers in the left ventricle (LV) are aligned along helical curves \cite{savadjiev2012heart}. This alignment has proved to be optimal for its mechanical function. Heart fibers stay locally packed together and almost parallel to each other, although they are bundled into a special surface: a generalized helicoid \cite{blair1978generalization}. This is a minimal surface that maintains this property through the whole beat cycle. The bundle of myofibers in generalized helicoids appears to be a characteristic feature through the heart wall \cite{pami2015, savadjiev2012heart}.
 
-\subsection{The Generalized Helicoid Model (GHM)}
+\subsubsection{The Generalized Helicoid Model (GHM)}
 
 We will introduce a local frame field $\mathbf{f}_1,\mathbf{f}_2,\mathbf{f}_3 : \mathbb{R}^3 \to \mathbb{R}^3$ that will allow us to describre more easily the GHM. In this description, we follow the same local frame field definition as chosen in previous publications \cite{pami2015, savadjiev2012heart}:
 \begin{itemize}
@@ -158,13 +159,13 @@ In general those values describe the amount of change in fiber orientation when 
 
 Analyses of these parameters on different species has shown on the entire heart volume \cite{savadjiev2012heart} that the GHM fits with small values of $K_T$ and $K_N$ and high values of $K_B$. This validates the helicoidal model approach and the characteristic of the helix angle in heart myofiber structure.
 
-From this analysis of helix angle using a model based description (GHM), by that we mean a fixed reference frame to measure parameters we are going to another approach that is model free. The method of moving frames we will introduce in the next section allows us to have a reference frame that can be redefined for each fiber we are focusing on, and therefore is free of this constraint of a general model based description.
+From this analysis of helix angle using a model based description (GHM), by that we mean a fixed reference frame to measure parameters, we shall now another approach that is model free. The method of moving frames we will introduce in the next section allows us to have a reference frame that can be redefined for each fiber we are focusing on. Whereas in the GHM model, the variation of connection form parameters are coupled such that there are only 3 degrees of freedom ($K_T, K_N$ and $K_B$) once the frame is fixed, in the model free approach all 9 connection form parameters can vary.
 
-\subsection{The Maurer-Cartan form}
+\subsubsection{The Maurer-Cartan form}
 
 The Maurer-Cartan form operator has proved useful in measuring the differential structure of a manifold, and the theory of moving frame has shown good results in the modeling of the heart fiber geometry \cite{pami2015}. The main idea is to apply the theory of moving frames but reverse it: tuning the Maurer-Cartan connection forms can enable us to generate manifolds based on assumptions on the structure that represent in the best way possible the actual heart fiber structure. This approach can be executed by using different fitting methods.
 
-\subsubsection{Theory of moving frames}
+\paragraph{Theory of moving frames}
 
 We utilize the framework described in \cite{de1990ventricular} to describe the geometry of fiber orientation in the heart wall via rotations of a frame field that is fit to the diffusion MRI data. 
 
@@ -205,13 +206,13 @@ Since each $\mathbf{e}_i$ is constant, the differential geometry of the frame fi
 where $\partial$ denotes the exterior derivative, and $\mathbf{C} = (\partial \mathbf{A}) \mathbf{A}^{-1} = (c_{i,j}) \in \mathbb{R}^{3 \times 3}$ is the Maurer-Cartan matrix of connection forms $(c_{i,j})$.\\
 Writing $\mathbf{f}_i$ as symbols, Eq. \ref{eq:1} is to be understood as $\partial \mathbf{f}_i = \sum_j{c_{i,j}\mathbf{f}_j}$.
 
-The Maurer-Cartan matrix is skew symmetric with zeros as diagonal entries so there are at most 3 independent, non-zero 1-forms: $c_{1,2}$, $c_{1,3}$, and $c_{2,3}$.
+The Maurer-Cartan matrix is skew symmetric with zeros as diagonal entries so there are at most 3 independent, non-zero 1-forms: $c_{12}$, $c_{13}$, and $c_{23}$.
 
 \begin{equation}
     \mathbf{C} = \begin{pmatrix}
-    0 & c_{1,2} & c_{1,3} \\
-    -c_{1,2} & 0 & c_{2,3} \\
-    -c_{1,3} & -c_{2,3} & 0
+    0 & c_{12} & c_{13} \\
+    -c_{12} & 0 & c_{23} \\
+    -c_{13} & -c_{23} & 0
     \end{pmatrix}
 \end{equation}
 1-forms operate on tangent vectors through contraction, written as $\partial \omega \langle \boldsymbol{\upsilon} \rangle \in \mathbb{R}$ for a general 1-form $\partial \omega = \sum_i{\omega_i \mathbf{e_i}}$ and tangent vector $\boldsymbol{\upsilon} \in \mathbb{R}^3$, which yields:
@@ -225,21 +226,21 @@ since
     \partial \mathbf{e}_i \langle \mathbf{e}_j \rangle = \delta_{i,j}
 \end{equation}
 where $\delta_{i,j}$ is the Kronecker delta.
-It turns out that the space of linear models for smoothly varying frame fields is parametrized by the 1-forms $c_{i,j}$. Since only 3 unique non-zero combinations of $c_{i,j}$ are possible, there are in total 9 connections $c_{i,j,k}$ that fully characterize the local frame field geometry.
+It turns out that the space of linear models for smoothly varying frame fields is parametrized by the 1-forms $c_{i,j}$. Since only 3 unique non-zero combinations of $c_{i,j}$ are possible, there are in total 9 connections $c_{ijk}$ that fully characterize the local frame field geometry.
 
-\subsubsection{Tuning connection form parameters by energy minimization} \label{fitting_method}
+\paragraph{Tuning connection form parameters by energy minimization} \label{fitting_method}
 
-\begin{figure}
+\begin{figure}[!t]
     \centering
-    \includegraphics[width=.5\textwidth]{figures/fibers_neighborhood3d}
-    \caption{Example of a fiber neighborhood of 27: the center fiber (dark blue) is where we will have a first guess for the values of the connection forms $c_{i,j,k}$ and then will run an energy minimization algorithm to come up with parameters that give the same orientation for the neighbors as we can see in the ground truth here}
+    \includegraphics[width=.78\textwidth]{figures/fibers_neighborhood3d}
+    \caption{Example of a fiber neighborhood of 27: the center fiber (dark blue) is where we will have a first guess for the values of the connection forms $c_{ijk}$ and then will run an energy minimization algorithm to come up with parameters that give the same orientation for the neighbors as we can see in the ground truth here}
     \label{fig:fibers_neighborhood3d}
 \end{figure}
 
-Finding out the correct values for the connection form parameters $c_{i,j,k}(\mathbf{x}), \forall \mathbf{x} \in \mathbb{R}^3$ is done by energy minimization within a neighborhood $\Omega$, as we can see in Fig. \ref{fig:fibers_neighborhood3d}. This approach makes sense as the GHM is still dependent on the location in the heart, indeed the rate of turning will not be the same close to the apex for instance or where the heart wall is thinner.\\
+Finding out the correct values for the connection form parameters $c_{ijk}(\mathbf{x}), \forall \mathbf{x} \in \mathbb{R}^3$ is done by energy minimization within a neighborhood $\Omega$, as we can see in Fig. \ref{fig:fibers_neighborhood3d}. This approach makes sense as the GHM is still dependent on the location in the heart, indeed the rate of turning will not be the same close to the apex for instance or where the heart wall is thinner.\\
 Therefore the optimal parameters are defined as follows:
 \begin{align*}
-    c^*_{i,j,k}(\mathbf{x}) &= \text{argmin}_{c_{i,j,k}} \frac{1}{\Omega} \sum_{\mathbf{v} \in \Omega} \sum_{i = 1}^3 \epsilon_i(\mathbf{x} + \mathbf{v}) \\
+    c^*_{i,j,k}(\mathbf{x}) &= \text{argmin}_{c_{ijk}} \frac{1}{\Omega} \sum_{\mathbf{v} \in \Omega} \sum_{i = 1}^3 \epsilon_i(\mathbf{x} + \mathbf{v}) \\
     \epsilon_i(\mathbf{x} + \mathbf{v}) &= \arccos \Big( \mathbf{f}_i(\mathbf{x} + \mathbf{v}) . \mathbf{\tilde{f}}_i(\mathbf{x} + \mathbf{v}) \Big)
 \end{align*}
 where:
@@ -250,19 +251,19 @@ where:
 \end{itemize}
 The optimization strategy can be one of the standard well-known algorithms for these specific tasks: either Nelder-Mead \cite{press2007numerical} or BOBYQA \cite{powell2009bobyqa}.
 
-\subsection{Combining both for a good description of heart fiber geometry}
+\subsubsection{Combining both for a good description of heart fiber geometry}
 
 The heart is made of elongated muscle cells called cardiomyocytes that are organized within a collagen matrix. The macroscopic shape is one of a truncated ellipsoid, while on a microscopic scale myocytes are stacked and form myofibers \cite{streeter1969fiber}.
 
-Work on histology has shown how cardiac myofibers wrap around the ventricles in helical curves \cite{buckberg2002basic}. The ubiquitous analysis of myofiber geometry states out that the helix angle - $\theta$ or $c_{1,2,3}$ in previous sections, or the angle $\angle (\overrightarrow{\mathbf{f}^{i}_1}, \overrightarrow{\mathbf{f}^{i+1}_2})$ where $i$ is a tangent plane to the heart wall at this location - varies smoothly in Fig. \ref{fig:helix_angle} with a total change in Fig. \ref{fig:total_angle} of around 120° for mammals.
-\begin{figure}
+Work on histology has shown how cardiac myofibers wrap around the ventricles in helical curves \cite{buckberg2002basic}. The ubiquitous analysis of myofiber geometry states out that the helix angle - $\theta$ or $c_{123}$ in previous sections, or the angle $\angle (\overrightarrow{\mathbf{f}^{i}_1}, \overrightarrow{\mathbf{f}^{i+1}_2})$ where $i$ is a tangent plane to the heart wall at this location - varies smoothly in Fig. \ref{fig:helix_angle} with a total change in Fig. \ref{fig:total_angle} of around 120° for mammals.
+\begin{figure}[!t]
     \centering
-    \includegraphics[width=.78\textwidth]{figures/total_angle}
+    \includegraphics[width=.58\textwidth]{figures/total_angle}
     \caption[b]{Visualization of the helix angle with a transmural point of view}
     \label{fig:total_angle}
 \end{figure}
-\begin{figure}
-    \includegraphics[width=.78\textwidth]{figures/helix_angle}
+\begin{figure}[!t]
+    \includegraphics[width=.58\textwidth]{figures/helix_angle}
     \caption{The helix angle varies smoothly from one tangent plane to the other from the epicardium to the endocardium}
     \label{fig:helix_angle}
 \end{figure}
@@ -271,47 +272,124 @@ Applying this method to the heart can be done by choosing $\mathbf{f}_i$ as desc
 
 The Maurer-Cartan connection form approach is a good one to describe the cardiac frame field, where the 3 main geometrical features are exhibited by parameters of this model:
 \begin{itemize}
-    \item $c_{1,2,3}$ for the helix angle, or trans-mural penetration of the heart wall
-    \item $c_{1,3,1}$ quantifies the short-axis (in plane for a given slice) curvature of the heart wall
-    \item $c_{2,3,2}$ represents the long-axis (from one slice to another) curvature
+    \item $c_{123}$ for the helix angle, or trans-mural penetration of the heart wall
+    \item $c_{131}$ quantifies the short-axis (in plane for a given slice) curvature of the heart wall
+    \item $c_{232}$ represents the long-axis (from one slice to another) curvature
 \end{itemize}
-As a reminder, in general, these coefficients $c_{i,j,k}$ express the rate of turn of the frame vector $\mathbf{f}_i$ towards $\mathbf{f}_j$ when $\mathbf{x}$ moves in the direction $\mathbf{f}_k$.
+As a reminder, in general, these coefficients $c_{ijk}$ express the rate of turn of the frame vector $\mathbf{f}_i$ towards $\mathbf{f}_j$ when $\mathbf{x}$ moves in the direction $\mathbf{f}_k$.
 
-In previous sections we reviewed MRI and DMRI as they are the technologies involved in the acquisition of our data. Then a review of the GHM and the Maurer-Cartan forms helped us introduce the tools we rely on for the geometric characterization of fiber orientation. In the following section we provide the reader a brief review of infarcts and their effects, as it is the main application area of my thesis. This subject is particularly interesting as not much is yet known about how fibers are remodeled in the presence of infarcts.
+In previous sections we reviewed MRI and DMRI as they are the technologies involved in the acquisition of our data. Then a review of the GHM and the Maurer-Cartan forms helped us introduce the tools we rely on for the geometric characterization of fiber orientation. In the following section we provide the reader a brief review of infarcts and their effects, as it is the main application area of this thesis. This subject is particularly interesting as not much is yet known about how fibers are remodeled in the presence of infarcts.
 
-\section{Infarcts and their impact on heart fiber geometry}
+\subsection{Infarcts and their impact on heart fiber geometry}
 
-Studies have been trying to determine the consequences of myocardial infarctions in small (rat \cite{weisman1985global}) hearts and larger (porcine \cite{wu2007mr, mediamihaela}) hearts. In these studies it was shown that acute infarction led to a decrease in regional wall thickness and an increased radius of curvature, mostly in the border zone (BZ) - which is the zone close to the dense scar region but with a more heterogeneous nature due to the persistence of surviving blood vessels that keep on supplying oxygen to isolated cells.
+Studies have been trying to determine the consequences of myocardial infarctions in small (rat \cite{weisman1985global}) hearts and larger (porcine \cite{wu2007mr, mediamihaela}) hearts. In these studies it was shown that acute infarction led to a decrease in regional wall thickness and an increased radius of curvature, mostly in the border zone (BZ) - which is the zone close to the dense scar region but with a more heterogeneous nature due to the persistence of surviving blood vessels that continue to supply oxygen to isolated cells.
 
-\subsection{Myocardial remodeling after infarct}
+\subsubsection{Myocardial remodeling after infarct}
 
 After an infarct occurs, a remodeling happens in the heart, which means that the normally existing structure goes through a rearrangement process as a result of the infarct \cite{swynghedauw1999molecular}. Cardiac Remodeling (CR) is determined by the following facts:
 \begin{enumerate}
-    \item Adaptation process of the myocytes and collagen to new geometrical conditions
+    \item An adaptation process of the myocytes and collagen to new geometrical conditions
     \item Fibrosis - increased collagen concentration, due to senescence - deterioration with age, ischemia, inflammatory processes
     \item cell death as a result of fibrosis, the major marker of cardiac failure
 \end{enumerate}
-One of the first consequences of CR is a decrease of the wall thickness, which leads immediately to an increased volume of the Left Ventricule (LV). Another direct effet is cardiac heart hypertrophy, with a multiplication of nonmuscle cells (fibroblasts and endothelial cells) in the place of former muscle myocytes. A study on rats \cite{mccormick1994regional} showed that the hypertrophy lead to a 25\% increase of the heart mass 13 weeks after infarct.
+One of the first consequences of CR is a decrease of the wall thickness, which leads immediately to an increased volume of the Left Ventricle (LV). Another direct effet is cardiac heart hypertrophy, with a multiplication of nonmuscle cells (fibroblasts and endothelial cells) in the place of former muscle myocytes. A study on rats \cite{mccormick1994regional} showed that the hypertrophy lead to a 25\% increase of the heart mass 13 weeks after infarct.
 
-Myocardial fibrosis is one of the major sign of malignancy in the CR process, which can lead to death by cardiac failure (CF) or severe arrhythmias.
+Myocardial fibrosis is one of the major signs of malignancy in the CR process, which can lead to death by cardiac failure (CF) or severe arrhythmias.
 
-\subsection{Effects of wall stress on tissue composition and geometry}
+\subsubsection{Effects of wall stress on tissue composition and geometry}
 
-A main problem in the study of the consequences of an infarct on a mammal heart is the important cost that makes it difficult to get various data on animal heart after infarct, as there are limited means,  and was for a long time even impossible, to analyzing it in-vivo \cite{holmes1994scar}. Several experiments still have been made and the following chronological evolution of the cardiac fiber geometry emerged:
+A main problem in the study of the consequences of an infarct on a mammal heart is the important cost that it involves. As imaging is expensive, only a few were carried out, which makes the analysis even more specific to the few examples available for study \cite{holmes1994scar}. Several experiments still have been made and the following chronological evolution of the cardiac fiber geometry emerged:
 \begin{itemize}
     \item Local infarct expansion 1 week after the initial infarct, characterized by a stretch in a plane tangent to the epicardium and wall thinning.
     \item Scar shrinkage 3 weeks after infarction. The CR, even without reestablishing a contractile function as efficient as before the infarct, works around the infarct to compensate the work overload on the scar region.
     \item Alignment of myocardial collagen fibers with the direction of the greatest applied stress, which takes place during infarct healing
 \end{itemize}
 
-\subsection{Characteristics of collagen in infarcted hearts and arrangement of the surviving fibers} \label{surviving_fibers}
+\subsubsection{Characteristics of collagen in infarcted hearts and arrangement of the surviving fibers} \label{surviving_fibers}
 
-Studies \cite{mccormick1994regional} have shown that after infarct the whole heart mass increase by an average of 25\%. The infarcts were affecting the LV, and the difference in mass goes up to 58\% if only the LV (ventricule affected by the infarct) is considered.
+Studies \cite{mccormick1994regional} have shown that after the occurrence of an infarct the whole heart mass increase by an average of 25\%. The infarcts were affecting the LV, and the difference in the LV mass could involve up to 58\% increase.
 
-A major impact of an infarct on the heart is on the collagen concentration that goes up significantly both in the scar tissue, the BZ which is specifically rich in fibrosis and in more distant regions. The concentration of collagen can double in the most affected regions of the heart. In general and throughout the whole heart the collagen concentration increases dramatically and is paired with more cross-linking of these cells.
+A major impact of an infarct on the heart is on the collagen concentration that goes up significantly both in the scar tissue, the Border Zone (BZ) which is specifically rich in fibrosis and in more distant regions. The concentration of collagen can double in the most affected regions of the heart. In general and throughout the whole heart the collagen concentration increases dramatically and is combined with more cross-linking of these cells.
 
 Studies on human hearts \cite{de1990ventricular} have shown that arrhythmias and tachycardia can be caused by abnormal membrane variables and abnormal geometrical arrangement of the myocardial fibers.
 
-Transmembrane potentials were taken and shown little difference between patients with ventricular tachycardia in a chronic phase of myocardial infarction and normal patients. This clearly indicates that the surviving myocardial fibers within an infarct can come back close to normal after a CR process. It has also been observed that surviving bundles in the subendocardial layers as well, and more surprisingly, as intramurally and subepicardially. These bundles of surviving myocytes showed an anisotropy similar to the papillary muscle of the heart, and therefore a similar coupling resistance, which makes sense as the activation signal propagates itself like a zigzag through the infarcted region of the heart.
+Transmembrane potentials were taken and these showed little difference between patients with ventricular tachycardia in a chronic phase of myocardial infarction and normal patients. This clearly indicates that the surviving myocardial fibers within an infarct can come back close to normal after a CR process. Surviving bundles in the subendocardial layers have also been observed, as well as intramurally and subepicardially. These bundles of surviving myocytes showed an anisotropy similar to the papillary muscle of the heart, and therefore a similar coupling resistance, which makes sense as the activation signal propagates itself like a zigzag through the infarcted region of the heart.
 
 After a transmural myocardial infarction, the outtermost epicardial muscle survives and its structure contributes greatly in the occurence of the reentry. These surviving muscle cells in the BZ of the epicardium are like a thin sheet over the infarct. The connections with other rare intramural muscle is not present very often, and this means that the impulses are only 2-dimensional as they cannot come from below, which prevents an appropriate circus movement and can lead to tachycardia \cite{ursell1985structural}.
+
+\section{Experimental Setup}
+
+The data on which our results are based are all porcine hearts that were provided to us by Dr. Mihaela Pop of the Sunnybrooke Research Institute and the Department of Medical Biophysics at the University of Toronto.
+
+\subsection{Data acquisition of pig infarcted and healthy hearts}
+
+Each porcine heart studied in this thesis were freshly excised, suspended in a plexiglass phantom filled with fluorinert (to eliminate artifacts) and placed in an MR head coil for ex-vivo imaging. All DW-MR studies were performed on a dedicated 1.5T GE Signa Excite scanner using a custom FSE pulse sequence. They used the following MR parameters \cite{pmbpop2013quantification}: 
+\begin{itemize}
+    \item $TE = 35$ ms
+    \item $TR = 700$ ms
+    \item echo train length $=2$
+    \item $b = 0$ for the unweighted MR images. As a reminder, the b factor is explained in Section \ref{dw_imaging}
+    \item $b = 500 $ s/$\text{mm}^2$ for the images where the 7 diffusion gradients were applied
+    \item $256 \times 256$ k-space
+    \item Field of View $FOV = 10-16$ cm
+    \item Slice Thickness $ = 1.2$ mm, yielding a sub-millimetric voxel size
+\end{itemize}
+From each heart, select samples containing an infarct were cut to align with the short-axis view of the MR images and prepared for histopathology to confirm the collagen deposition in the infarct area.
+
+\begin{figure}[t!]
+    \centering
+    \includegraphics[width=.78\textwidth]{figures/Gip4_histology}
+    \caption{Histology of a slice of infarcted heart analyzed in \cite{pmbpop2013quantification}}
+    \label{fig:histology_pig_4}
+\end{figure}
+
+One of the difficulties that remains is to try and find a good correspondence between the slices from the histology and the ones that were obtained from the imaging that occured before the histopathology was performed. Fig. \ref{fig:histology_pig_4} shows a histology image of a slide from an infarcted heart, with intact myocytes in the normal tissue and altered tissue microstructure in the infarcted zone. As depicted by the Masson Trichrome stain, the ischemic border zone (BZ) had collagen fibrils interdigitated between viable myocytes. In the dense scar area, necrotic myocytes were completely replaced by mature fibrosis (the final product of collagen degradation), resulting in the loss of myocardial anisotropy.
+
+\subsection{Source of input data}
+
+The data we used \cite{pmbpop2013quantification} are DT-MRI of porcine hearts. Of these 8 hearts had infarcts while 2 were healthy. For every infarcted heart, the imaging process took place 6 weeks after the occurence of the infarct and histological section was carried out after that for some of the cases. The availability of some histological data allows us to compare our analysis qualitatively with measurements that serve as ground truth. We provide  in Table \ref{tab:hearts} an overview of the data we had access to and its usability.
+
+\begin{table}
+    \centering
+    \begin{tabular}{|c | c | c | c|} 
+         \hline
+         \shortstack{Heart \\ (Acquisition Date)} & Infarcted or Healthy & Region of infarct \\
+         \hline
+         2 & Infarcted & \shortstack{Left Circumflex artery \\ (LCX)} \\ 
+         \hline
+         4 & Infarcted & \shortstack{Left Anterior Descending \\ (LAD)} \\
+         \hline
+         5 & Infarcted & LCX \\
+         \hline
+         6 & Infarcted & LCX \\
+         \hline
+         7 & Infarcted & \shortstack{Rigth Coronary Artery \\ (RCA)} \\ 
+         \hline
+         17 & Infarcted & Bad quality \\
+         \hline
+         18 & Infarcted & Bad quality \\
+         \hline
+         23 & Infarcted & Unreadable \\
+         \hline
+         25 & Healthy & - \\
+         \hline
+         28 & Healthy & Too Noisy \\
+         \hline
+    \end{tabular}
+    \caption{Description of our available datasets}
+    \label{tab:hearts}
+\end{table}
+
+\subsection{Quality of our data}
+
+For a better and more accurate analysis of our results, we will focus mostly on the best quality data (least noisy) we had access to and fortunately those include one control heart (\#5: Fig. \ref{fig:pig25}) and 5 infarcted hearts (\#2: Fig. \ref{fig:pig2}, \#4: Fig. \ref{fig:pig4}, \#5: Fig. \ref{fig:pig5}, \#6: Fig. \ref{fig:pig6}, \#7: Fig. \ref{fig:pig7}).
+
+Due to the imaging technology used, and to the fact that a fairly low Tesla intensity was used to acquire this data (1.5T), a good amount of noise is present in the raw data. We have taken advantage of the knowledge on the type of noise (Rician noise) that is present in MRI-acquired data to apply non-local denoising strategies which are a bit expensive in time but can smooth rather efficiently and not by too much the data to be able to have a better readability of the fiber orientation without oversmoothing. This prevents this strategy from smoothing even regions where the data is chaotic due to the infarct or proximity to the boundary and not only because of noise issues from acquisition. A fine tuning of the smoothing strategy allowed us to get good quality datasets without removing relevant information in the regions of interest around the infarcts.
+
+\subsection{Usage of MedInria software to read the DICOMs}
+
+We took the advantage of the MedInria tool to load the DICOM images, process the data through the Rician denoising method and finally use their Diffusion Tensor Imaging tool to compute the value of the tensor matrix (detailed in Section \ref{diffusion_tensor_matrix}) at each voxel location in the heart.
+
+From the tensor matrices at every location, we were easily able to compute the fiber orientation at every location with a potential flip in the sense of the vector. Cylindrical consistency was used to enforce a consistent sense throughout the heart.
+
+Once we have the fiber orientation at every voxel, we can use our previous work to compute the connection forms and get an approximative appreciation of the quality of the fitting, depending on hyper parameters that have to be fine tuned by mostly on the coherence of the underlying data.
